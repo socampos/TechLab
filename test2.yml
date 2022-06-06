@@ -10,7 +10,8 @@
    ssl_verify: "False"
    
   tasks:
-    fortios_system_global::
+  - name: Configure global attributes.
+     fortios_system_global::
       host:  "{{ host }}"
       username: "{{ username }}"
       password: "{{ password }}"
