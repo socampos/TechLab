@@ -11,7 +11,7 @@
    
   tasks:
   - name: Configure global attributes.
-     fortios_system_global::
+     fortios_system_global:
       host:  "{{ host }}"
       username: "{{ username }}"
       password: "{{ password }}"
