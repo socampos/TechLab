@@ -10,17 +10,12 @@
    ssl_verify: "False"
   tasks:
   - name: Configure IPv4 static routing tables.
-    fortios_router_static:
+    fortios_system_global::
       host:  "{{ host }}"
       username: "{{ username }}"
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
       state: "present"
-      router_static:
-        #bfd: "enable"
-        #blackhole: "enable"
-        comment: "blablablabla"
-        distance: "7"
-        dst: "2.4.5.6/32"
-        status: "enable"
+      system_global:
+        hostname: "fgft"
