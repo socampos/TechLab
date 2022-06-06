@@ -1,4 +1,4 @@
-- hosts: fortigates
+- hosts: Lab
   collections:
    - fortinet.fortios
 
