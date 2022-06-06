@@ -1,6 +1,7 @@
 ---
 - name: Do something
   hosts: LabGroup
+  gather_facts: no
   collections:
    - fortinet.fortios
 
