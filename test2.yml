@@ -1,21 +1,10 @@
 ---
 - hosts: localhost
   gather_facts: False
-  
-  vars:
-    host: "192.168.33.49"
-    username: "socampos"
-    password: "T3chn0m4"
-    vdom: "root"
-    ssl_verify: "False"
    
   tasks:
     - name: Configure global attributes.
       fortios_system_global:
-        host:  "{{ host }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
-        vdom:  "{{ vdom }}"
         https: "False"
         system_global:
           hostname: "fgft"
