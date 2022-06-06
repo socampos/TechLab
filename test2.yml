@@ -1,0 +1,22 @@
+---
+
+- hosts: LabGroup
+  gather_facts: False
+  vars: 
+    username: "socampos"                                                              
+    password: "T3chn0m4"  
+    vdom: "root"
+    fortigate_ip: "192.168.33.49"
+  tasks:
+    - name: CREATE OBJECT ON FORTIGATE
+      fortios_firewall_address:
+      host: "{{ fortigate_ip }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      vdom: "{{ vdom }}"
+      https: "True"
+      state: "present"
+      firewall_address:                                                           
+        name: "TEST"                                             
+        subnet: "200.200.200.200"
+        comment: "TEST"
