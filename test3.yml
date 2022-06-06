@@ -4,9 +4,9 @@
     gather_facts: true
     
     vars:
-      host: 192.168.33.49
-      username:
-    
+      host: "192.168.33.49"
+      username: "socampos"
+      password: "T3chn0m4"
     
     tasks:
     - name: Backup
