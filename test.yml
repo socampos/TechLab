@@ -1,4 +1,6 @@
-- hosts: Lab
+---
+- name: Do something
+  hosts: LabGroup
   collections:
    - fortinet.fortios
 
