@@ -1,13 +1,14 @@
 ---
-
 - hosts: LabGroup
   gather_facts: False
+  
   vars:
    host: "192.168.33.49"
    username: "socampos"
    password: "T3chn0m4"
    vdom: "root"
    ssl_verify: "False"
+   
   tasks:
   - name: Configure global attributes.
     fortios_system_global::
@@ -16,6 +17,5 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
-      state: "present"
       system_global:
         hostname: "fgft"
