@@ -1,0 +1,15 @@
+- hosts: fortigates
+  collections:
+   - fortinet.fortios
+
+
+  vars:
+   vdom: "root"
+   
+  tasks:
+  - name: Configure global attributes.
+    fortios_system_global:
+      vdom:  "{{ vdom }}"
+      system_global:
+        admintimeout: "60"
+        hostname: "FG-ANSIBLE-TEST"
