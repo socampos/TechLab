@@ -3,4 +3,4 @@
 
   tasks:
     - name: Get running config.
-      raw: get system status
+      command: ssh socampos@192.168.33.49 'get system status'
