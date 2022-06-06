@@ -1,0 +1,6 @@
+---
+- hosts: LabGroup
+
+  tasks:
+    - name: Get running config.
+      raw: get system status
