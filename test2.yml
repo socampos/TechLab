@@ -2,20 +2,25 @@
 
 - hosts: LabGroup
   gather_facts: False
-  vars: 
-    username: "socampos"                                                              
-    password: "T3chn0m4"  
-    vdom: "root"
-    fortigate_ip: "192.168.33.49"
+  vars:
+   host: "192.168.33.49"
+   username: "socampos"
+   password: "T3chn0m4"
+   vdom: "root"
+   ssl_verify: "False"
   tasks:
-    - name: CREATE OBJECT ON FORTIGATE
-      host: "{{ fortigate_ip }}"
+  - name: Configure IPv4 static routing tables.
+    fortios_router_static:
+      host:  "{{ host }}"
       username: "{{ username }}"
       password: "{{ password }}"
-      vdom: "{{ vdom }}"
-      https: "True"
+      vdom:  "{{ vdom }}"
+      https: "False"
       state: "present"
-      firewall_address:                                                           
-        name: "TEST"                                             
-        subnet: "200.200.200.200"
-        comment: "TEST"
+      router_static:
+        #bfd: "enable"
+        #blackhole: "enable"
+        comment: "blablablabla"
+        distance: "7"
+        dst: "2.4.5.6/32"
+        status: "enable"
