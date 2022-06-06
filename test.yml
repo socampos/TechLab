@@ -12,10 +12,9 @@
   tasks:
   - debug:
         msg: "Trying to do something"
-        
-  - name: Configure global attributes.
-    fortios_system_global:
+
+  - name: Display information about the top CPU processes.
+    fortios_system_performance_top:
       vdom:  "{{ vdom }}"
-      system_global:
-        admintimeout: "60"
-        hostname: "FG-ANSIBLE-TEST"
+      system_performance_top:
+        <delay>: "1"
