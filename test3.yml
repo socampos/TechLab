@@ -4,9 +4,9 @@
     gather_facts: true
     
     vars:
-      host: "192.168.33.49"
-      username: "socampos"
-      password: "T3chn0m4"
+      firewall_node: "192.168.33.49"
+      fortinet_username: "socampos"
+      fortinet_password: "T3chn0m4"
     
     tasks:
     - name: Backup
