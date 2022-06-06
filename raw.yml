@@ -1,5 +1,5 @@
 ---
-- hosts: LabGroup
+- hosts: localhost
 
   tasks:
     - name: Get running config.
