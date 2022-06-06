@@ -1,5 +1,5 @@
 ---
-- hosts: LabGroup
+- hosts: localhost
   gather_facts: False
   
   vars:
