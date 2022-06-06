@@ -12,8 +12,9 @@
    ansible_httpapi_validate_certs: no
    ansible_httpapi_port: 443
   tasks:
-  - name: Display information about the top CPU processes.
-    fortios_system_performance_top:
+  - name: Configure global attributes.
+    fortios_system_global:
       vdom:  "{{ vdom }}"
-      system_performance_top:
-        <delay>: "<your_own_value>"
+      system_global:
+        admintimeout: "60"
+        hostname: "FG-ANSIBLE-TEST"
