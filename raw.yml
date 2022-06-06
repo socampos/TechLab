@@ -3,4 +3,4 @@
 
   tasks:
     - name: Get running config.
-      command: ssh socampos@192.168.33.49 -y 'get system status'
+      command: ssh -o "StrictHostKeyChecking no" socampos@192.168.33.49 -y 'get system status'
