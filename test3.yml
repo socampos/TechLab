@@ -4,6 +4,8 @@
     gather_facts: true
     
     vars:
+      host: 192.168.33.49
+      username:
     
     
     tasks:
