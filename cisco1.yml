@@ -1,6 +1,6 @@
 ---
 - name: Cisco config
-  hosts: localhost
+  hosts: LabGroup
   connection: network_cli
 
   tasks:
