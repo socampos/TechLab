@@ -1,0 +1,9 @@
+---
+- name: Cisco config
+  hosts: localhost
+
+  tasks:
+    - name: Backup Config
+      ios_config:
+        lines:
+          - service timest log datetime localtime
