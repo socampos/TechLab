@@ -1,6 +1,7 @@
 ---
 - name: Cisco config
   hosts: localhost
+  connection: network_cli
 
   tasks:
     - name: Backup Config
