@@ -9,11 +9,18 @@
       fortinet_password: "T3chn0m4"
     
     tasks:
-    - name: Backup
-      fortios_config:
-        host: "{{ firewall_node }}"
-        username: "{{ fortinet_username }}"
-        password: "{{ fortinet_password }}"
-        backup: yes
-        backup_filename: backup_firewall_config
-        backup_path: /tmp/fortigate_backup
+    #- name: Backup
+    #  fortios_config:
+    #    host: "{{ firewall_node }}"
+    #    username: "{{ fortinet_username }}"
+    #    password: "{{ fortinet_password }}"
+    #    backup: yes
+    #    backup_filename: backup_firewall_config
+    #    backup_path: /tmp/fortigate_backup
+    - name: asdfasdf
+      fortios_monitor_fact:
+        selector: 'system_config_backup'
+        vdom: 'root'
+        params:
+          scope: 'global'
+      register: backupinfo
