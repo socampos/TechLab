@@ -1,6 +1,8 @@
 ---
   - name: Fortinet Firewall
     hosts: localhost
+    collections:
+      - fortinet.fortios
     gather_facts: true
     
     vars:
