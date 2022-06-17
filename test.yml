@@ -10,7 +10,7 @@
    vdom: "root"
    ansible_httpapi_use_ssl: yes
    ansible_httpapi_validate_certs: no
-   ansible_httpapi_port: 443
+   ansible_httpapi_port: 3443
   tasks:
   - name: Configure global attributes.
     fortios_system_global:
