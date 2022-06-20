@@ -17,4 +17,4 @@
       vdom:  "{{ vdom }}"
       system_global:
         admintimeout: "60"
-        hostname: "FG-ANSIBLE-TEST"
+        hostname: "Funciona"
