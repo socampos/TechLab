@@ -49,13 +49,24 @@
   #      password: "callTechnoma*911"
         
   - name: Configuración de interfaces.
-    fortios_system_virtual_switch:
+  #  fortios_system_virtual_switch:
+  #    vdom:  "{{ vdom }}"
+  #    state: "present"
+  #    member_path: "port:name"
+  #    member_state: "absent"
+  #    system_virtual_switch:
+  #      name: "lan"
+  #      port:
+  #        -
+  #          name: "lan1"
+    fortios_system_interface:
       vdom:  "{{ vdom }}"
       state: "present"
-      member_path: "port:name"
-      member_state: "absent"
-      system_virtual_switch:
-        name: "lan"
-        port:
-          -
-            name: "lan1"
+      system_interface:
+        name: "wan"
+        mode: "static"
+        ip: "10.53.{{ num }}.2/30"
+        allowaccess: "ping,https,ssh,http"
+        alias: "Ufinet"
+        lldp_reception: "enable"
+        role: "wan"
