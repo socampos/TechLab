@@ -71,7 +71,7 @@
         lldp_reception: "enable"
         role: "wan"
         
-     fortios_system_interface:
+    fortios_system_interface:
       vdom:  "{{ vdom }}"
       state: "present"
       system_interface:
