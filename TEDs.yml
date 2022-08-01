@@ -6,14 +6,14 @@
 
   vars_prompt:
     - name: hostname
-  	  prompt: Ingresar Hostname
-  	  private: no
+      prompt: Ingresar Hostname
+      private: no
 
     - name: mgmtip
-  	  prompt: Ingresar IP de administracion
-  	  private: no
+      prompt: Ingresar IP de administracion
+      private: no
 
   tasks:
     - name: Print a message
-  	  ansible.builtin.debug:
-  	    msg: 'Hostname es {{hostname}} y la IP es {{mgmtip}}'
+      ansible.builtin.debug:
+        msg: 'Hostname es {{hostname}} y la IP es {{mgmtip}}'
