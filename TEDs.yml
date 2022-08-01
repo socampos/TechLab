@@ -16,4 +16,4 @@
     fortios_system_global:
       vdom:  "{{ vdom }}"
       system_global:
-        hostname: "Funciona"
+        hostname: {{ hostname }}
