@@ -33,4 +33,4 @@
         id: "1"
         query-v1-status: "disable"
         trap-v1-status: "disable"
-        events: 'cpu-high' 'mem-low'
+        events: "'cpu-high' 'mem-low'"
