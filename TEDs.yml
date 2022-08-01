@@ -55,6 +55,7 @@
       member_path: "system_virtual_switch:port:name"
       member_state: "absent"
       system_virtual_switch:
+        name: "lan"
         port:
           -
             name: "lan1"
