@@ -50,7 +50,7 @@
         
   #- name: Configuración de interfaces.
   #  fortios_system_virtual_switch:
-  #    vdom:  "{{ vdom }}"
+  #    vdom: "{{ vdom }}"
   #    state: "present"
   #    member_path: "port:name"
   #    member_state: "absent"
@@ -61,7 +61,7 @@
   #          name: "lan1"
   - name: WAN.
     fortios_system_interface:
-      vdom:  "{{ vdom }}"
+      vdom: "{{ vdom }}"
       state: "present"
       system_interface:
         name: "wan"
@@ -73,7 +73,7 @@
         role: "wan"
   - name: VLAN10.
     fortios_system_interface:
-      vdom:  "{{ vdom }}"
+      vdom: "{{ vdom }}"
       state: "present"
       system_interface:
         name: "VLAN 10"
