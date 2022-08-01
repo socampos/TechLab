@@ -63,7 +63,6 @@
       vdom:  "{{ vdom }}"
       state: "present"
       system_interface:
-        -
           name: "wan"
           mode: "static"
           ip: "10.53.{{ num }}.2/30"
@@ -71,7 +70,7 @@
           alias: "Ufinet"
           lldp_reception: "enable"
           role: "wan"
-        -
+      system_interface:
           name: "VLAN 10"
           ip: "10.50.{{ num }}.1/28"
           allowaccess: "ping,https,ssh,http"
