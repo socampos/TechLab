@@ -1,8 +1,5 @@
 ---
 - name: Configuracion de TED
-  gather_facts: no
-  collections:
-  - fortinet.fortios
 
   vars_prompt:
     - name: hostname
