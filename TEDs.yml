@@ -52,7 +52,9 @@
     fortios_system_virtual_switch:
       vdom:  "{{ vdom }}"
       state: "present"
-      member_path: "lan1"
+      member_path: "system_virtual_switch:port:name"
       member_state: "absent"
       system_virtual_switch:
-        name: "lan"
+        port:
+          -
+            name: "lan1"
