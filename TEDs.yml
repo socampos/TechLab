@@ -53,3 +53,5 @@
       vdom:  "{{ vdom }}"
       state: "present"
       member_path: "lan1"
+      member_state: "absent"
+      system_virtual_switch:
