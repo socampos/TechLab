@@ -51,4 +51,5 @@
   - name: Configuración de interfaces.
     fortios_system_virtual_switch:
       vdom:  "{{ vdom }}"
+      state: "present"
       member_path: "lan1"
