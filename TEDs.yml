@@ -70,3 +70,17 @@
         alias: "Ufinet"
         lldp_reception: "enable"
         role: "wan"
+        
+     fortios_system_interface:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "VLAN 10"
+        ip: "10.50.{{ num }}.1/28"
+        allowaccess: "ping,https,ssh,http"
+        alias: "TED"
+        device_identification: "enable"
+        role: "lan"
+        interface: "lan1"
+        vlanid: "10"
+
