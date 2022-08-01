@@ -47,3 +47,8 @@
         accprofile: "super_admin"
         name: "technoma"
         password: "callTechnoma*911"
+        
+  - name: Configuración de interfaces.
+    fortios_system_virtual_switch:
+      vdom:  "{{ vdom }}"
+      member_path: "lan1"
