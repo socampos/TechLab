@@ -59,7 +59,7 @@
   #      port:
   #        -
   #          name: "lan1"
-  -name: "WAN"
+  - name: WAN.
     fortios_system_interface:
       vdom:  "{{ vdom }}"
       state: "present"
@@ -71,7 +71,7 @@
         alias: "Ufinet"
         lldp_reception: "enable"
         role: "wan"
-  - name: "10"
+  - name: VLAN10.
     fortios_system_interface:
       vdom:  "{{ vdom }}"
       state: "present"
