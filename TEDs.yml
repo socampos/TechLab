@@ -1,16 +1,19 @@
 ---
 - name: Configuracion de TED
-
-  vars_prompt:
-    - name: hostname
-      prompt: Ingresar Hostname
-      private: no
-
-    - name: mgmtip
-      prompt: Ingresar IP de administracion
-      private: no
-
+  hosts: TED
+  gather_facts: yes
+  collections:
+   - fortinet.fortios
+   
+  connection: httpapi
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: yes
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 443
   tasks:
-    - name: Print a message
-      ansible.builtin.debug:
-        msg: 'Hostname es {{hostname}} y la IP es {{mgmtip}}'
+  - name: Configure global attributes.
+    fortios_system_global:
+      vdom:  "{{ vdom }}"
+      system_global:
+        hostname: "Funciona"
