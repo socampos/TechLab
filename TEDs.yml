@@ -39,14 +39,14 @@
         query_v1_status: "disable"
         trap_v1_status: "disable"
 
-  - name: Creación de usuarios.
-    fortios_system_admin:
-      vdom:  "{{ vdom }}"
-      state: "present"
-      system_admin:
-        accprofile: "super_admin"
-        name: "technoma"
-        password: "callTechnoma*911"
+  #- name: Creación de usuarios.
+  #  fortios_system_admin:
+  #    vdom:  "{{ vdom }}"
+  #    state: "present"
+  #    system_admin:
+  #      accprofile: "super_admin"
+  #      name: "technoma"
+  #      password: "callTechnoma*911"
         
   - name: Configuración de interfaces.
     fortios_system_virtual_switch:
