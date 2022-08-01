@@ -1,20 +1,19 @@
 ---
 - name: Configuracion de TED
-  hosts: FG_TED
   gather_facts: no
   collections:
   - fortinet.fortios
 
   vars_prompt:
-  	- name: hostname
+    - name: hostname
   	  prompt: Ingresar Hostname
   	  private: no
 
-  	- name: mgmtip
+    - name: mgmtip
   	  prompt: Ingresar IP de administracion
   	  private: no
 
   tasks:
-  	- name: Print a message
+    - name: Print a message
   	  ansible.builtin.debug:
-  	  	msg: 'Hostname es {{hostname}} y la IP es {{mgmtip}}'
+  	    msg: 'Hostname es {{hostname}} y la IP es {{mgmtip}}'
