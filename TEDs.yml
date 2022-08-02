@@ -253,7 +253,7 @@
   #    vdom:  "{{ vdom }}"
   #    state: "present"
   #    firewall_address:
-  #      name: "Monitoreo Technoma"
+  #      name: "Monitoreo_Technoma"
   #      subnet: "172.22.22.246 255.255.255.255"
 
   #- name: Grupo de direcciones sucursal
@@ -326,27 +326,85 @@
   #      allowaccess: "ping,https,ssh,http"
   #      interface: "wan"
 
-  - name: Zona INSIDE
-    fortios_system_zone:
+  #- name: Zona INSIDE
+  #  fortios_system_zone:
+  #    vdom:  "{{ vdom }}"
+  #    state: "present"
+  #    system_zone:
+  #      name: "INSIDE"
+  #      interface:
+  #        -
+  #          interface_name: "VLAN 10"
+  #        -
+  #          interface_name: "VLAN 11"
+  #        -
+  #          interface_name: "VLAN 12"
+  #        -
+  #          interface_name: "VLAN 13"
+  #- name: Zona DC_TIGO
+  #  fortios_system_zone:
+  #    vdom:  "{{ vdom }}"
+  #    state: "present"
+  #    system_zone:
+  #      name: "DC_TIGO"
+  #      interface:
+  #        -
+  #          interface_name: "DC-TIGO_Ufinet"
+
+  - name: Configuración de permiso 1.
+    fortios_firewall_policy:
       vdom:  "{{ vdom }}"
       state: "present"
-      system_zone:
-        name: "INSIDE"
-        interface:
+      firewall_policy:
+        action: "accept"
+        name: "TO MATRIZ"
+        srcintf:
           -
-            interface_name: "VLAN 10"
+            name: "INSIDE"
+        dstintf:
           -
-            interface_name: "VLAN 11"
+            name: "DC_TIGO"
+        srcaddr:
           -
-            interface_name: "VLAN 12"
+            name: "LAN_SUCURSAL"
+        dstaddr:
           -
-            interface_name: "VLAN 13"
-  - name: Zona DC_TIGO
-    fortios_system_zone:
+            name: "LAN_MATRIZ"
+        service:
+          -
+            name: "ALL"
+  - name: Configuración de permiso 2.
+    fortios_firewall_policy:
       vdom:  "{{ vdom }}"
       state: "present"
-      system_zone:
-        name: "DC_TIGO"
-        interface:
+      firewall_policy:
+        action: "accept"
+        name: "FROM MATRIZ"
+        srcintf:
           -
-            interface_name: "DC-TIGO_Ufinet"
+            name: "DC_TIGO"
+        dstintf:
+          -
+            name: "INSIDE"
+        srcaddr:
+          -
+            name: "LAN_MATRIZ"
+          -
+            name: "SSL-ITTI"
+          -
+            name: "Monitoreo_Technoma"
+        dstaddr:
+          -
+            name: "LAN_SUCURSAL"
+        service:
+          -
+            name: "ALL"
+
+  - name: Configuracion de ruta estatica.
+    fortios_router_static:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      router_static:
+        dst: "10.212.134.0 255.255.255.0"
+        device: "DC-TIGO_Ufinet"
+        comment: "FortiClient ITTI"
