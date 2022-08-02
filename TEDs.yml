@@ -59,18 +59,18 @@
   #      port:
   #        -
   #          name: "lan1"
-  #- name: WAN.
-  #  fortios_system_interface:
-  #    vdom: "{{ vdom }}"
-  #    state: "present"
-  #    system_interface:
-  #      name: "wan"
-  #      mode: "static"
-  #      ip: "10.53.{{ num }}.2/30"
-  #      allowaccess: "ping,https,ssh,http"
-  #      alias: "Ufinet"
-  #      lldp_reception: "enable"
-  #      role: "wan"
+  - name: WAN.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "wan"
+        mode: "static"
+        ip: "10.53.{{ num }}.2/30"
+        allowaccess: "ping,https,ssh,http"
+        alias: "Ufinet"
+        lldp_reception: "enable"
+        role: "wan"
         
   - name: VLAN10.
     fortios_system_interface:
