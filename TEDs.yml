@@ -77,27 +77,12 @@
       vdom: "{{ vdom }}"
       state: "present"
       system_interface:
-        name: "VLAN10"
-
-  - name: Troncal.
-    fortios_system_interface:
-      vdom: "{{ vdom }}"
-      state: "present"
-      system_interface:
-        name: "lan1"
-        alias: "Troncal TED"
+        name: "VLAN 10"
+        type: "vlan"
+        ip: "10.50.{{ num }}.1/28"
+        allowaccess: "ping,https,ssh,http"
+        alias: "TED"
+        device_identification: "enable"
         role: "lan"
-        
-  #- name: VLAN10.
-  #  fortios_system_interface:
-  #    vdom: "{{ vdom }}"
-  #    state: "present"
-  #    system_interface:
-  #      name: "VLAN10"
-  #      ip: "10.50.{{ num }}.1/28"
-  #      allowaccess: "ping,https,ssh,http"
-  #      alias: "TED"
-  #      device_identification: "enable"
-  #      role: "lan"
-  #      interface: "lan1"
-  #      vlanid: "10"
+        interface: "lan1"
+        vlanid: "10"
