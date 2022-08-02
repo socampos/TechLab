@@ -24,20 +24,20 @@
         hostname: "{{ hostname }}"
         timezone: 87
         
-  - name: Configuración de SNMP.
-    fortios_system_snmp_community:
-      vdom:  "{{ vdom }}"
-      state: "present"
-      system_snmp_community:
-        name: "T3chn0m4"
-        id: "1"
-        hosts:
-          -
-            ip: "{{ snmpmanager }}"
-            id: "1"
-        events: "cpu-high,mem-low,log-full,intf-ip,vpn-tun-up,vpn-tun-down,ha-switch,ha-hb-failure,ips-signature,ips-anomaly,av-virus,av-oversize,av-pattern,av-fragmented,fm-if-change,fm-conf-change,bgp-established,bgp-backward-transition,ha-member-up,ha-member-down,ent-conf-change,av-conserve,av-bypass,av-oversize-passed,av-oversize-blocked,ips-pkg-update,ips-fail-open,temperature-high,voltage-alert,power-supply-failure,faz-disconnect,wc-ap-up,wc-ap-down,fswctl-session-up,fswctl-session-down,load-balance-real-server-down,device-new,per-cpu-high,dhcp,ospf-nbr-state-change,ospf-virtnbr-state-change"
-        query_v1_status: "disable"
-        trap_v1_status: "disable"
+  #- name: Configuración de SNMP.
+  #  fortios_system_snmp_community:
+  #    vdom:  "{{ vdom }}"
+  #    state: "present"
+  #    system_snmp_community:
+  #      name: "T3chn0m4"
+  #      id: "1"
+  #      hosts:
+  #        -
+  #          ip: "{{ snmpmanager }}"
+  #          id: "1"
+  #      events: "cpu-high,mem-low,log-full,intf-ip,vpn-tun-up,vpn-tun-down,ha-switch,ha-hb-failure,ips-signature,ips-anomaly,av-virus,av-oversize,av-pattern,av-fragmented,fm-if-change,fm-conf-change,bgp-established,bgp-backward-transition,ha-member-up,ha-member-down,ent-conf-change,av-conserve,av-bypass,av-oversize-passed,av-oversize-blocked,ips-pkg-update,ips-fail-open,temperature-high,voltage-alert,power-supply-failure,faz-disconnect,wc-ap-up,wc-ap-down,fswctl-session-up,fswctl-session-down,load-balance-real-server-down,device-new,per-cpu-high,dhcp,ospf-nbr-state-change,ospf-virtnbr-state-change"
+  #      query_v1_status: "disable"
+  #      trap_v1_status: "disable"
 
   #- name: Creación de usuarios.
   #  fortios_system_admin:
@@ -77,8 +77,7 @@
       vdom: "{{ vdom }}"
       state: "present"
       system_interface:
-        name: "VLAN 10"
-        algorithm: "L2"
+        name: "VLAN10"
         ip: "10.50.{{ num }}.1/28"
         allowaccess: "ping,https,ssh,http"
         alias: "TED"
