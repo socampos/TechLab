@@ -404,14 +404,14 @@
   #        -
   #          name: "ALL"
 
-  #- name: Configuracion de ruta estatica.
-  #  fortios_router_static:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    router_static:
-  #      dst: "10.212.134.0 255.255.255.0"
-  #      device: "DC-TIGO_Ufinet"
-  #      comment: "FortiClient ITTI"
+  - name: Configuracion de ruta estatica.
+    fortios_router_static:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      router_static:
+        dst: "10.212.134.0 255.255.255.0"
+        device: "DC-TIGO_Ufinet"
+        comment: "FortiClient ITTI"
 
   - name: Configuracion de BGP.
     fortios_router_bgp:
