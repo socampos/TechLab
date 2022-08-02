@@ -444,12 +444,12 @@
             id: "4"
             prefix: "10.50.{{ num }}.48 255.255.255.240"
 
-  - name: Cambio de puerto web al 20443.
-    fortios_system_global:
-      vdom:  "{{ vdom }}"
-      system_global:
-        admin_sport: "20443"
+  #- name: Cambio de puerto web al 20443.
+  #  fortios_system_global:
+  #    vdom:  "{{ vdom }}"
+  #    system_global:
+  #      admin_sport: "20443"
 
-  - name: Nueva URL de acceso.
-    ansible.builtin.debug:
-      msg: Favor acceder al equipo por https://10.50.{{ num }}.49:20443
+  #- name: Nueva URL de acceso.
+  #  ansible.builtin.debug:
+  #    msg: Favor acceder al equipo por https://10.50.{{ num }}.49:20443
