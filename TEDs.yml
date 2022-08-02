@@ -331,6 +331,7 @@
       vdom:  "{{ vdom }}"
       state: "present"
       system_zone:
+        name: "INSIDE"
         interface:
           -
             interface_name: "VLAN 10"
@@ -345,6 +346,7 @@
       vdom:  "{{ vdom }}"
       state: "present"
       system_zone:
+        name: "DC_TIGO"
         interface:
           -
             interface_name: "DC-TIGO_Ufinet"
