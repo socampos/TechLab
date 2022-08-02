@@ -14,404 +14,404 @@
    ansible_httpapi_port: 443
    
   tasks:
-  #- name: Configuración de atributos globales.
-  #  fortios_system_global:
-  #    vdom:  "{{ vdom }}"
-  #    system_global:
-  #      admin_ssh_port: 2222
-  #      admin_telnet_port: 2323
-  #      admintimeout: 30
-  #      hostname: "{{ hostname }}"
-  #      timezone: 87
+  - name: Configuración de atributos globales.
+    fortios_system_global:
+      vdom:  "{{ vdom }}"
+      system_global:
+        admin_ssh_port: 2222
+        admin_telnet_port: 2323
+        admintimeout: 30
+        hostname: "{{ hostname }}"
+        timezone: 87
         
-  #- name: Configuración de SNMP.
-  #  fortios_system_snmp_community:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    system_snmp_community:
-  #      name: "T3chn0m4"
-  #      id: "1"
-  #      hosts:
-  #        -
-  #          ip: "{{ snmpmanager }}"
-  #          id: "1"
-  #      events: "cpu-high,mem-low,log-full,intf-ip,vpn-tun-up,vpn-tun-down,ha-switch,ha-hb-failure,ips-signature,ips-anomaly,av-virus,av-oversize,av-pattern,av-fragmented,fm-if-change,fm-conf-change,bgp-established,bgp-backward-transition,ha-member-up,ha-member-down,ent-conf-change,av-conserve,av-bypass,av-oversize-passed,av-oversize-blocked,ips-pkg-update,ips-fail-open,temperature-high,voltage-alert,power-supply-failure,faz-disconnect,wc-ap-up,wc-ap-down,fswctl-session-up,fswctl-session-down,load-balance-real-server-down,device-new,per-cpu-high,dhcp,ospf-nbr-state-change,ospf-virtnbr-state-change"
-  #      query_v1_status: "disable"
-  #      trap_v1_status: "disable"
+  - name: Configuración de SNMP.
+    fortios_system_snmp_community:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_snmp_community:
+        name: "T3chn0m4"
+        id: "1"
+        hosts:
+          -
+            ip: "{{ snmpmanager }}"
+            id: "1"
+        events: "cpu-high,mem-low,log-full,intf-ip,vpn-tun-up,vpn-tun-down,ha-switch,ha-hb-failure,ips-signature,ips-anomaly,av-virus,av-oversize,av-pattern,av-fragmented,fm-if-change,fm-conf-change,bgp-established,bgp-backward-transition,ha-member-up,ha-member-down,ent-conf-change,av-conserve,av-bypass,av-oversize-passed,av-oversize-blocked,ips-pkg-update,ips-fail-open,temperature-high,voltage-alert,power-supply-failure,faz-disconnect,wc-ap-up,wc-ap-down,fswctl-session-up,fswctl-session-down,load-balance-real-server-down,device-new,per-cpu-high,dhcp,ospf-nbr-state-change,ospf-virtnbr-state-change"
+        query_v1_status: "disable"
+        trap_v1_status: "disable"
 
-  #- name: Creación de usuarios.
-  #  fortios_system_admin:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    system_admin:
-  #      accprofile: "super_admin"
-  #      name: "technoma"
-  #      password: "callTechnoma*911"
+  - name: Creación de usuarios.
+    fortios_system_admin:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_admin:
+        accprofile: "super_admin"
+        name: "technoma"
+        password: "callTechnoma*911"
         
-  #- name: Configuración de troncal.
-  #  fortios_system_virtual_switch:
-  #    vdom: "{{ vdom }}"
-  #    state: "present"
-  #    member_path: "port:name"
-  #    member_state: "absent"
-  #    system_virtual_switch:
-  #      name: "lan"
-  #      port:
-  #        -
-  #          name: "lan1"
-  #- name: WAN.
-  #  fortios_system_interface:
-  #    vdom: "{{ vdom }}"
-  #    state: "present"
-  #    system_interface:
-  #      name: "wan"
-  #      mode: "static"
-  #      ip: "10.53.{{ num }}.2/30"
-  #      allowaccess: "ping,https,ssh,http"
-  #      alias: "Ufinet"
-  #      lldp_reception: "enable"
-  #      role: "wan"        
-  #- name: VLAN10.
-  #  fortios_system_interface:
-  #    vdom: "{{ vdom }}"
-  #    state: "present"
-  #    system_interface:
-  #      name: "VLAN 10"
-  #      type: "vlan"
-  #      vdom: "{{ vdom }}"
-  #      ip: "10.50.{{ num }}.1/28"
-  #      allowaccess: "ping,https,ssh,http"
-  #      alias: "TED"
-  #      device_identification: "enable"
-  #      role: "lan"
-  #      interface: "lan1"
-  #      vlanid: "10"
-  #- name: VLAN11.
-  #  fortios_system_interface:
-  #    vdom: "{{ vdom }}"
-  #    state: "present"
-  #    system_interface:
-  #      name: "VLAN 11"
-  #      type: "vlan"
-  #      vdom: "{{ vdom }}"
-  #      ip: "10.50.{{ num }}.17/28"
-  #      allowaccess: "ping,https,ssh,http"
-  #      alias: "CAMARAS"
-  #      device_identification: "enable"
-  #      role: "lan"
-  #      interface: "lan1"
-  #      vlanid: "11"
-  #- name: VLAN12.
-  #  fortios_system_interface:
-  #    vdom: "{{ vdom }}"
-  #    state: "present"
-  #    system_interface:
-  #      name: "VLAN 12"
-  #      type: "vlan"
-  #      vdom: "{{ vdom }}"
-  #      ip: "10.50.{{ num }}.33/28"
-  #      allowaccess: "ping,https,ssh,http"
-  #      alias: "TV"
-  #      device_identification: "enable"
-  #      role: "lan"
-  #      interface: "lan1"
-  #      vlanid: "12"
-  #- name: VLAN13.
-  #  fortios_system_interface:
-  #    vdom: "{{ vdom }}"
-  #    state: "present"
-  #    system_interface:
-  #      name: "VLAN 13"
-  #      type: "vlan"
-  #      vdom: "{{ vdom }}"
-  #      ip: "10.50.{{ num }}.49/28"
-  #      allowaccess: "ping,https,ssh,http,snmp"
-  #      alias: "MGMT"
-  #      device_identification: "enable"
-  #      role: "lan"
-  #      interface: "lan1"
-  #      vlanid: "13"
+  - name: Configuración de troncal.
+    fortios_system_virtual_switch:
+      vdom: "{{ vdom }}"
+      state: "present"
+      member_path: "port:name"
+      member_state: "absent"
+      system_virtual_switch:
+        name: "lan"
+        port:
+          -
+            name: "lan1"
+  - name: WAN.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "wan"
+        mode: "static"
+        ip: "10.53.{{ num }}.2/30"
+        allowaccess: "ping,https,ssh,http"
+        alias: "Ufinet"
+        lldp_reception: "enable"
+        role: "wan"        
+  - name: VLAN10.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "VLAN 10"
+        type: "vlan"
+        vdom: "{{ vdom }}"
+        ip: "10.50.{{ num }}.1/28"
+        allowaccess: "ping,https,ssh,http"
+        alias: "TED"
+        device_identification: "enable"
+        role: "lan"
+        interface: "lan1"
+        vlanid: "10"
+  - name: VLAN11.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "VLAN 11"
+        type: "vlan"
+        vdom: "{{ vdom }}"
+        ip: "10.50.{{ num }}.17/28"
+        allowaccess: "ping,https,ssh,http"
+        alias: "CAMARAS"
+        device_identification: "enable"
+        role: "lan"
+        interface: "lan1"
+        vlanid: "11"
+  - name: VLAN12.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "VLAN 12"
+        type: "vlan"
+        vdom: "{{ vdom }}"
+        ip: "10.50.{{ num }}.33/28"
+        allowaccess: "ping,https,ssh,http"
+        alias: "TV"
+        device_identification: "enable"
+        role: "lan"
+        interface: "lan1"
+        vlanid: "12"
+  - name: VLAN13.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "VLAN 13"
+        type: "vlan"
+        vdom: "{{ vdom }}"
+        ip: "10.50.{{ num }}.49/28"
+        allowaccess: "ping,https,ssh,http,snmp"
+        alias: "MGMT"
+        device_identification: "enable"
+        role: "lan"
+        interface: "lan1"
+        vlanid: "13"
 
-  #- name: DHCP CAMARAS.
-  #  fortios_system_dhcp_server:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    system_dhcp_server:
-  #      id: "4"
-  #      default_gateway: "10.50.{{ num }}.17"
-  #      netmask: "255.255.255.240"
-  #      interface: "VLAN 11"
-  #      ip_range:
-  #        -
-  #          id: "1"
-  #          start_ip: "10.50.{{ num }}.18"
-  #          end_ip: "10.50.{{ num }}.30"
-  #      dns_server1: "172.25.80.10"
-  #- name: DHCP TED.
-  #  fortios_system_dhcp_server:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    system_dhcp_server:
-  #      id: "3"
-  #      default_gateway: "10.50.{{ num }}.1"
-  #      netmask: "255.255.255.240"
-  #      interface: "VLAN 10"
-  #      ip_range:
-  #        -
-  #          id: "1"
-  #          start_ip: "10.50.{{ num }}.2"
-  #          end_ip: "10.50.{{ num }}.3"
-  #      dns_server1: "172.25.80.10"
-  #- name: DHCP TV.
-  #  fortios_system_dhcp_server:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    system_dhcp_server:
-  #      id: "5"
-  #      default_gateway: "10.50.{{ num }}.33"
-  #      netmask: "255.255.255.240"
-  #      interface: "VLAN 12"
-  #      ip_range:
-  #        -
-  #          id: "1"
-  #          start_ip: "10.50.{{ num }}.34"
-  #          end_ip: "10.50.{{ num }}.46"
-  #      dns_server1: "172.25.80.10"
+  - name: DHCP CAMARAS.
+    fortios_system_dhcp_server:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_dhcp_server:
+        id: "4"
+        default_gateway: "10.50.{{ num }}.17"
+        netmask: "255.255.255.240"
+        interface: "VLAN 11"
+        ip_range:
+          -
+            id: "1"
+            start_ip: "10.50.{{ num }}.18"
+            end_ip: "10.50.{{ num }}.30"
+        dns_server1: "172.25.80.10"
+  - name: DHCP TED.
+    fortios_system_dhcp_server:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_dhcp_server:
+        id: "3"
+        default_gateway: "10.50.{{ num }}.1"
+        netmask: "255.255.255.240"
+        interface: "VLAN 10"
+        ip_range:
+          -
+            id: "1"
+            start_ip: "10.50.{{ num }}.2"
+            end_ip: "10.50.{{ num }}.3"
+        dns_server1: "172.25.80.10"
+  - name: DHCP TV.
+    fortios_system_dhcp_server:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_dhcp_server:
+        id: "5"
+        default_gateway: "10.50.{{ num }}.33"
+        netmask: "255.255.255.240"
+        interface: "VLAN 12"
+        ip_range:
+          -
+            id: "1"
+            start_ip: "10.50.{{ num }}.34"
+            end_ip: "10.50.{{ num }}.46"
+        dns_server1: "172.25.80.10"
 
-  #- name: Objeto LAN TED.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "LAN_TED"
-  #      subnet: "10.50.{{ num }}.0 255.255.255.240"
-  #- name: Objeto LAN CAMARA.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "LAN_CAMARA"
-  #      subnet: "10.50.{{ num }}.16 255.255.255.240"
-  #- name: Objeto LAN TV.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "LAN_TV"
-  #      subnet: "10.50.{{ num }}.32 255.255.255.240"
-  #- name: Objeto LAN 10.192.20.0/24.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "LAN_10.192.20.0/24"
-  #      subnet: "10.192.20.0 255.255.255.0"
-  #- name: Objeto LAN 172.25.80.0/24.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "LAN_172.25.80.0/24"
-  #      subnet: "172.25.80.0 255.255.255.0"
-  #- name: Objeto LAN 172.25.84.0/24.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "LAN_172.25.84.0/24"
-  #      subnet: "172.25.84.0 255.255.255.0"
-  #- name: Objeto LAN MGMT.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "LAN_MGMT"
-  #      subnet: "10.50.{{ num }}.48 255.255.255.240"
-  #- name: Objeto LAN 172.20.20.0/23.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "LAN_172.20.20.0/23"
-  #      subnet: "172.20.20.0 255.255.254.0"
-  #- name: Objeto LAN 172.25.90.0/24.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "LAN_172.25.90.0/24"
-  #      subnet: "172.25.90.0 255.255.255.0"
-  #- name: Objeto SSL ITTI.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "SSL-ITTI"
-  #      subnet: "10.212.134.0 255.255.255.0"
-  #- name: Objeto Monitoreo Technoma.
-  #  fortios_firewall_address:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_address:
-  #      name: "Monitoreo_Technoma"
-  #      subnet: "172.22.22.246 255.255.255.255"
+  - name: Objeto LAN TED.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_TED"
+        subnet: "10.50.{{ num }}.0 255.255.255.240"
+  - name: Objeto LAN CAMARA.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_CAMARA"
+        subnet: "10.50.{{ num }}.16 255.255.255.240"
+  - name: Objeto LAN TV.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_TV"
+        subnet: "10.50.{{ num }}.32 255.255.255.240"
+  - name: Objeto LAN 10.192.20.0/24.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_10.192.20.0/24"
+        subnet: "10.192.20.0 255.255.255.0"
+  - name: Objeto LAN 172.25.80.0/24.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_172.25.80.0/24"
+        subnet: "172.25.80.0 255.255.255.0"
+  - name: Objeto LAN 172.25.84.0/24.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_172.25.84.0/24"
+        subnet: "172.25.84.0 255.255.255.0"
+  - name: Objeto LAN MGMT.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_MGMT"
+        subnet: "10.50.{{ num }}.48 255.255.255.240"
+  - name: Objeto LAN 172.20.20.0/23.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_172.20.20.0/23"
+        subnet: "172.20.20.0 255.255.254.0"
+  - name: Objeto LAN 172.25.90.0/24.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_172.25.90.0/24"
+        subnet: "172.25.90.0 255.255.255.0"
+  - name: Objeto SSL ITTI.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "SSL-ITTI"
+        subnet: "10.212.134.0 255.255.255.0"
+  - name: Objeto Monitoreo Technoma.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "Monitoreo_Technoma"
+        subnet: "172.22.22.246 255.255.255.255"
 
-  #- name: Grupo de direcciones sucursal
-  #  fortios_firewall_addrgrp:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_addrgrp:
-  #      name: "LAN_SUCURSAL"
-  #      member:
-  #        -
-  #          name: "LAN_CAMARA"
-  #        -
-  #          name: "LAN_TV"
-  #        -
-  #          name: "LAN_MGMT"
-  #        -
-  #          name: "LAN_TED"
-  #- name: Grupo de direcciones matriz
-  #  fortios_firewall_addrgrp:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_addrgrp:
-  #      name: "LAN_MATRIZ"
-  #      member:
-  #        -
-  #          name: "LAN_10.192.20.0/24"
-  #        -
-  #          name: "LAN_172.25.80.0/24"
-  #        -
-  #          name: "LAN_172.25.84.0/24"
-  #        -
-  #          name: "LAN_172.20.20.0/23"
-  #        -
-  #          name: "LAN_172.25.90.0/24"
+  - name: Grupo de direcciones sucursal
+    fortios_firewall_addrgrp:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_addrgrp:
+        name: "LAN_SUCURSAL"
+        member:
+          -
+            name: "LAN_CAMARA"
+          -
+            name: "LAN_TV"
+          -
+            name: "LAN_MGMT"
+          -
+            name: "LAN_TED"
+  - name: Grupo de direcciones matriz
+    fortios_firewall_addrgrp:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_addrgrp:
+        name: "LAN_MATRIZ"
+        member:
+          -
+            name: "LAN_10.192.20.0/24"
+          -
+            name: "LAN_172.25.80.0/24"
+          -
+            name: "LAN_172.25.84.0/24"
+          -
+            name: "LAN_172.20.20.0/23"
+          -
+            name: "LAN_172.25.90.0/24"
 
-  #- name: Configuracion de fase 1 VPN a DC Tigo.
-  #  fortios_vpn_ipsec_phase1_interface:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    vpn_ipsec_phase1_interface:
-  #      name: "DC-TIGO_Ufinet"
-  #      interface: "wan"
-  #      ike_version: "2"
-  #      peertype: "any"
-  #      net_device: "disable"
-  #      proposal: "aes256-sha256"
-  #      dhgrp: "14"
-  #      remote_gw: "10.53.{{ num }}.1"
-  #      psksecret: {{ psk }}
-  #- name: Configuracion de fase 2 VPN a DC Tigo.
-  #  fortios_vpn_ipsec_phase2_interface:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    vpn_ipsec_phase2_interface:
-  #      name: "DC-TIGO_Ufinet"
-  #      phase1name: "DC-TIGO_Ufinet"
-  #      proposal: "aes256-sha256"
-  #      pfs: "disable"
+  - name: Configuracion de fase 1 VPN a DC Tigo.
+    fortios_vpn_ipsec_phase1_interface:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      vpn_ipsec_phase1_interface:
+        name: "DC-TIGO_Ufinet"
+        interface: "wan"
+        ike_version: "2"
+        peertype: "any"
+        net_device: "disable"
+        proposal: "aes256-sha256"
+        dhgrp: "14"
+        remote_gw: "10.53.{{ num }}.1"
+        psksecret: {{ psk }}
+  - name: Configuracion de fase 2 VPN a DC Tigo.
+    fortios_vpn_ipsec_phase2_interface:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      vpn_ipsec_phase2_interface:
+        name: "DC-TIGO_Ufinet"
+        phase1name: "DC-TIGO_Ufinet"
+        proposal: "aes256-sha256"
+        pfs: "disable"
 
-  #- name: Configuracion de tunel VPN.
-  #  fortios_system_interface:
-  #    vdom: "{{ vdom }}"
-  #    state: "present"
-  #    system_interface:
-  #      name: "DC-TIGO_Ufinet"
-  #      type: "tunnel"
-  #      vdom: "{{ vdom }}"
-  #      ip: "10.56.{{ num }}.2/32"
-  #      remote_ip: "10.56.{{ num }}.1/32"
-  #      allowaccess: "ping,https,ssh,http"
-  #      interface: "wan"
+  - name: Configuracion de tunel VPN.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "DC-TIGO_Ufinet"
+        type: "tunnel"
+        vdom: "{{ vdom }}"
+        ip: "10.56.{{ num }}.2/32"
+        remote_ip: "10.56.{{ num }}.1/32"
+        allowaccess: "ping,https,ssh,http"
+        interface: "wan"
 
-  #- name: Zona INSIDE
-  #  fortios_system_zone:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    system_zone:
-  #      name: "INSIDE"
-  #      interface:
-  #        -
-  #          interface_name: "VLAN 10"
-  #        -
-  #          interface_name: "VLAN 11"
-  #        -
-  #          interface_name: "VLAN 12"
-  #        -
-  #          interface_name: "VLAN 13"
-  #- name: Zona DC_TIGO
-  #  fortios_system_zone:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    system_zone:
-  #      name: "DC_TIGO"
-  #      interface:
-  #        -
-  #          interface_name: "DC-TIGO_Ufinet"
+  - name: Zona INSIDE
+    fortios_system_zone:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_zone:
+        name: "INSIDE"
+        interface:
+          -
+            interface_name: "VLAN 10"
+          -
+            interface_name: "VLAN 11"
+          -
+            interface_name: "VLAN 12"
+          -
+            interface_name: "VLAN 13"
+  - name: Zona DC_TIGO
+    fortios_system_zone:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_zone:
+        name: "DC_TIGO"
+        interface:
+          -
+            interface_name: "DC-TIGO_Ufinet"
 
-  #- name: Configuración de permiso 1.
-  #  fortios_firewall_policy:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_policy:
-  #      action: "accept"
-  #      name: "TO MATRIZ"
-  #      policyid: "2"
-  #      schedule: "always"
-  #      srcintf:
-  #        -
-  #          name: "INSIDE"
-  #      dstintf:
-  #        -
-  #          name: "DC_TIGO"
-  #      srcaddr:
-  #        -
-  #          name: "LAN_SUCURSAL"
-  #      dstaddr:
-  #        -
-  #          name: "LAN_MATRIZ"
-  #      service:
-  #        -
-  #          name: "ALL"
-  #- name: Configuración de permiso 2.
-  #  fortios_firewall_policy:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    firewall_policy:
-  #      action: "accept"
-  #      name: "FROM MATRIZ"
-  #      policyid: "3"
-  #      schedule: "always"
-  #      srcintf:
-  #        -
-  #          name: "DC_TIGO"
-  #      dstintf:
-  #        -
-  #          name: "INSIDE"
-  #      srcaddr:
-  #        -
-  #          name: "LAN_MATRIZ"
-  #        -
-  #          name: "SSL-ITTI"
-  #        -
-  #          name: "Monitoreo_Technoma"
-  #      dstaddr:
-  #        -
-  #          name: "LAN_SUCURSAL"
-  #      service:
-  #        -
-  #          name: "ALL"
+  - name: Configuración de permiso 1.
+    fortios_firewall_policy:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_policy:
+        action: "accept"
+        name: "TO MATRIZ"
+        policyid: "2"
+        schedule: "always"
+        srcintf:
+          -
+            name: "INSIDE"
+        dstintf:
+          -
+            name: "DC_TIGO"
+        srcaddr:
+          -
+            name: "LAN_SUCURSAL"
+        dstaddr:
+          -
+            name: "LAN_MATRIZ"
+        service:
+          -
+            name: "ALL"
+  - name: Configuración de permiso 2.
+    fortios_firewall_policy:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_policy:
+        action: "accept"
+        name: "FROM MATRIZ"
+        policyid: "3"
+        schedule: "always"
+        srcintf:
+          -
+            name: "DC_TIGO"
+        dstintf:
+          -
+            name: "INSIDE"
+        srcaddr:
+          -
+            name: "LAN_MATRIZ"
+          -
+            name: "SSL-ITTI"
+          -
+            name: "Monitoreo_Technoma"
+        dstaddr:
+          -
+            name: "LAN_SUCURSAL"
+        service:
+          -
+            name: "ALL"
 
-  #- name: Configuracion de ruta estatica.
-  #  fortios_router_static:
-  #    vdom:  "{{ vdom }}"
-  #    state: "present"
-  #    router_static:
-  #      dst: "10.212.134.0 255.255.255.0"
-  #      device: "DC-TIGO_Ufinet"
-  #      comment: "FortiClient ITTI"
+  - name: Configuracion de ruta estatica.
+    fortios_router_static:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      router_static:
+        dst: "10.212.134.0 255.255.255.0"
+        device: "DC-TIGO_Ufinet"
+        comment: "FortiClient ITTI"
 
   - name: Configuracion de BGP.
     fortios_router_bgp:
