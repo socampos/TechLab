@@ -302,7 +302,7 @@
         proposal: "aes256-sha256"
         dhgrp: "14"
         remote_gw: "10.53.{{ num }}.1"
-        psksecret: {{ psk }}
+        psksecret: "{{ psk }}"
   - name: Configuracion de fase 2 VPN a DC Tigo.
     fortios_vpn_ipsec_phase2_interface:
       vdom:  "{{ vdom }}"
