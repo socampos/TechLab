@@ -76,6 +76,7 @@
     fortios_system_interface:
       vdom: "{{ vdom }}"
       state: "present"
+      enable_log: "yes"
       system_interface:
         name: "VLAN 10"
         type: "vlan"
