@@ -80,6 +80,7 @@
       system_interface:
         name: "VLAN 10"
         type: "vlan"
+        vdom: "{{ vdom }}"
         ip: "10.50.{{ num }}.1/28"
         allowaccess: "ping,https,ssh,http"
         alias: "TED"
