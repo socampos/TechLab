@@ -78,14 +78,6 @@
       state: "present"
       system_interface:
         name: "VLAN10"
-        mode: "static"
-        ip: "10.50.{{ num }}.1/28"
-        allowaccess: "ping,https,ssh,http"
-        alias: "TED"
-        lldp_reception: "enable"
-        role: "lan"
-        vlanid: "10"
-        interface: "lan1"
 
   - name: Troncal.
     fortios_system_interface:
