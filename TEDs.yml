@@ -255,3 +255,22 @@
       firewall_address:
         name: "Monitoreo Technoma"
         subnet: "172.22.22.246 255.255.255.255"
+
+  - name: Grupo de direcciones sucursal
+    fortios_firewall_addrgrp:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_addrgrp:
+        name: "LAN_SUCURSAL"
+        member:
+          -
+            name: "LAN_CAMARA,LAN_TV,LAN_MGMT,LAN_TED"
+  - name: Grupo de direcciones matriz
+    fortios_firewall_addrgrp:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_addrgrp:
+        name: "LAN_MATRIZ"
+        member:
+          -
+            name: "LAN_10.192.20.0/24,LAN_172.25.80.0/24,LAN_172.25.84.0/24,LAN_172.20.20.0/23,LAN_172.25.90.0/24"
