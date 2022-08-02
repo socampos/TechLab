@@ -14,15 +14,15 @@
    ansible_httpapi_port: 443
    
   tasks:
-  - name: Configuración de atributos globales.
-    fortios_system_global:
-      vdom:  "{{ vdom }}"
-      system_global:
-        admin_ssh_port: 2222
-        admin_telnet_port: 2323
-        admintimeout: 30
-        hostname: "{{ hostname }}"
-        timezone: 87
+  #- name: Configuración de atributos globales.
+  #  fortios_system_global:
+  #    vdom:  "{{ vdom }}"
+  #    system_global:
+  #      admin_ssh_port: 2222
+  #      admin_telnet_port: 2323
+  #      admintimeout: 30
+  #      hostname: "{{ hostname }}"
+  #      timezone: 87
         
   #- name: Configuración de SNMP.
   #  fortios_system_snmp_community:
@@ -59,18 +59,18 @@
   #      port:
   #        -
   #          name: "lan1"
-  - name: WAN.
-    fortios_system_interface:
-      vdom: "{{ vdom }}"
-      state: "present"
-      system_interface:
-        name: "wan"
-        mode: "static"
-        ip: "10.53.{{ num }}.2/30"
-        allowaccess: "ping,https,ssh,http"
-        alias: "Ufinet"
-        lldp_reception: "enable"
-        role: "wan"
+  #- name: WAN.
+  #  fortios_system_interface:
+  #    vdom: "{{ vdom }}"
+  #    state: "present"
+  #    system_interface:
+  #      name: "wan"
+  #      mode: "static"
+  #      ip: "10.53.{{ num }}.2/30"
+  #      allowaccess: "ping,https,ssh,http"
+  #      alias: "Ufinet"
+  #      lldp_reception: "enable"
+  #      role: "wan"
         
   - name: VLAN10.
     fortios_system_interface:
