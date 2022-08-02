@@ -415,31 +415,39 @@
 
   - name: Configuracion de BGP.
     fortios_router_bgp:
-      vdom: "{{ vdom }}
+      vdom: "{{ vdom }}"
         router_bgp:
           as: "65627"
           router_id: "10.56.{{ num }}.2"
-          #aggregate_address:
-          #  -
-          #    id: "1"
-          #    prefix: "10.50.{{ num }}.0 255.255.255.0"
-          #    summary_only: "enable"
-          #neighbor:
-          #  -
-          #    ip: "10.56.{{ num }}.1"
-          #    soft-reconfiguration: "enable"
-          #    description: "DC-TIGO-UFINET"
-          #    remote_as: "65502"
-          #network:
-          #  -
-          #    id: "1"
-          #    prefix: "10.50.{{ num }}.0 255.255.255.240"
-          #  -
-          #    id: "2"
-          #    prefix: "10.50.{{ num }}.16 255.255.255.240"
-          #  -
-          #    id: "3"
-          #    prefix: "10.50.{{ num }}.32 255.255.255.240"
-          #  -
-          #    id: "4"
-          #    prefix: "10.50.{{ num }}.48 255.255.255.240"
+          aggregate_address:
+            -
+              id: "1"
+              prefix: "10.50.{{ num }}.0 255.255.255.0"
+              summary_only: "enable"
+          neighbor:
+            -
+              ip: "10.56.{{ num }}.1"
+              soft-reconfiguration: "enable"
+              description: "DC-TIGO-UFINET"
+              remote_as: "65502"
+          network:
+            -
+              id: "1"
+              prefix: "10.50.{{ num }}.0 255.255.255.240"
+            -
+              id: "2"
+              prefix: "10.50.{{ num }}.16 255.255.255.240"
+            -
+              id: "3"
+              prefix: "10.50.{{ num }}.32 255.255.255.240"
+            -
+              id: "4"
+              prefix: "10.50.{{ num }}.48 255.255.255.240"
+
+  - name: Cambio de puerto web al 20443
+    fortios_system_global:
+      vdom:  "{{ vdom }}"
+      system_global:
+        admin_sport: "20443"
+    ansible.builtin.debug:
+      msg: Favor acceder al equipo por https://10.50.{{ num }}.49:20443
