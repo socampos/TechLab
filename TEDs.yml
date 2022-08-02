@@ -137,7 +137,7 @@
       vdom:  "{{ vdom }}"
       state: "present"
       system_dhcp_server:
-        id: "3"
+        id: "4"
         default_gateway: "10.50.{{ num }}.17"
         netmask: "255.255.255.240"
         interface: "VLAN 11"
@@ -152,7 +152,7 @@
       vdom:  "{{ vdom }}"
       state: "present"
       system_dhcp_server:
-        id: "4"
+        id: "3"
         default_gateway: "10.50.{{ num }}.1"
         netmask: "255.255.255.240"
         interface: "VLAN 10"
@@ -177,3 +177,81 @@
             start_ip: "10.50.{{ num }}.34"
             end_ip: "10.50.{{ num }}.46"
         dns_server1: "172.25.80.10"
+
+  - name: Objeto LAN TED.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_TED"
+        subnet: "10.50.{{ num }}.0 255.255.255.240"
+  - name: Objeto LAN CAMARA.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_CAMARA"
+        subnet: "10.50.{{ num }}.16 255.255.255.240"
+  - name: Objeto LAN TV.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_TV"
+        subnet: "10.50.{{ num }}.32 255.255.255.240"
+  - name: Objeto LAN 10.192.20.0/24.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_10.192.20.0/24"
+        subnet: "10.192.20.0 255.255.255.0"
+  - name: Objeto LAN 172.25.80.0/24.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_172.25.80.0/24"
+        subnet: "172.25.80.0 255.255.255.0"
+  - name: Objeto LAN 172.25.84.0/24.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_172.25.84.0/24"
+        subnet: "172.25.84.0 255.255.255.0"
+  - name: Objeto LAN MGMT.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_MGMT"
+        subnet: "10.50.{{ num }}.48 255.255.255.240"
+  - name: Objeto LAN 172.20.20.0/23.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_172.20.20.0/23"
+        subnet: "172.20.20.0 255.255.254.0"
+  - name: Objeto LAN 172.25.90.0/24.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "LAN_172.25.90.0/24"
+        subnet: "172.25.90.0 255.255.255.0"
+  - name: Objeto SSL ITTI.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "SSL-ITTI"
+        subnet: "10.212.134.0 255.255.255.0"
+  - name: Objeto Monitoreo Technoma.
+    fortios_firewall_address:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_address:
+        name: "Monitoreo Technoma"
+        subnet: "172.22.22.246 255.255.255.255"
