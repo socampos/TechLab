@@ -48,7 +48,7 @@
   #      name: "technoma"
   #      password: "callTechnoma*911"
         
-  #- name: Configuración de interfaces.
+  #- name: Configuración de troncal.
   #  fortios_system_virtual_switch:
   #    vdom: "{{ vdom }}"
   #    state: "present"
@@ -70,13 +70,11 @@
         allowaccess: "ping,https,ssh,http"
         alias: "Ufinet"
         lldp_reception: "enable"
-        role: "wan"
-        
+        role: "wan"        
   - name: VLAN10.
     fortios_system_interface:
       vdom: "{{ vdom }}"
       state: "present"
-      enable_log: "yes"
       system_interface:
         name: "VLAN 10"
         type: "vlan"
@@ -88,3 +86,94 @@
         role: "lan"
         interface: "lan1"
         vlanid: "10"
+  - name: VLAN11.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "VLAN 11"
+        type: "vlan"
+        vdom: "{{ vdom }}"
+        ip: "10.50.{{ num }}.17/28"
+        allowaccess: "ping,https,ssh,http"
+        alias: "CAMARAS"
+        device_identification: "enable"
+        role: "lan"
+        interface: "lan1"
+        vlanid: "11"
+  - name: VLAN12.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "VLAN 12"
+        type: "vlan"
+        vdom: "{{ vdom }}"
+        ip: "10.50.{{ num }}.33/28"
+        allowaccess: "ping,https,ssh,http"
+        alias: "TV"
+        device_identification: "enable"
+        role: "lan"
+        interface: "lan1"
+        vlanid: "12"
+  - name: VLAN13.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "VLAN 13"
+        type: "vlan"
+        vdom: "{{ vdom }}"
+        ip: "10.50.{{ num }}.49/28"
+        allowaccess: "ping,https,ssh,http,snmp"
+        alias: "MGMT"
+        device_identification: "enable"
+        role: "lan"
+        interface: "lan1"
+        vlanid: "13"
+
+  - name: DHCP CAMARAS.
+    fortios_system_dhcp_server:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_dhcp_server:
+        id: "3"
+        default_gateway: "10.50.{{ num }}.17"
+        netmask: "255.255.255.240"
+        interface: "VLAN 11"
+        ip_range:
+          -
+            id: "1"
+            start_ip: "10.50.{{ num }}.18"
+            end_ip: "10.50.{{ num }}.30"
+        dns_server1: "172.25.80.10"
+  - name: DHCP TED.
+    fortios_system_dhcp_server:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_dhcp_server:
+        id: "4"
+        default_gateway: "10.50.{{ num }}.1"
+        netmask: "255.255.255.240"
+        interface: "VLAN 10"
+        ip_range:
+          -
+            id: "1"
+            start_ip: "10.50.{{ num }}.2"
+            end_ip: "10.50.{{ num }}.3"
+        dns_server1: "172.25.80.10"
+  - name: DHCP TV.
+    fortios_system_dhcp_server:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_dhcp_server:
+        id: "5"
+        default_gateway: "10.50.{{ num }}.33"
+        netmask: "255.255.255.240"
+        interface: "VLAN 12"
+        ip_range:
+          -
+            id: "1"
+            start_ip: "10.50.{{ num }}.34"
+            end_ip: "10.50.{{ num }}.46"
+        dns_server1: "172.25.80.10"
