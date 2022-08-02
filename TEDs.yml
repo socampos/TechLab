@@ -359,6 +359,7 @@
         action: "accept"
         name: "TO MATRIZ"
         policyid: "2"
+        schedule: "always"
         srcintf:
           -
             name: "INSIDE"
@@ -382,6 +383,7 @@
         action: "accept"
         name: "FROM MATRIZ"
         policyid: "3"
+        schedule: "always"
         srcintf:
           -
             name: "DC_TIGO"
