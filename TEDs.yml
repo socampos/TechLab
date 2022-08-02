@@ -289,39 +289,62 @@
   #        -
   #          name: "LAN_172.25.90.0/24"
 
-  - name: Configuracion de fase 1 VPN a DC Tigo.
-    fortios_vpn_ipsec_phase1_interface:
-      vdom:  "{{ vdom }}"
-      state: "present"
-      vpn_ipsec_phase1_interface:
-        name: "DC-TIGO_Ufinet"
-        interface: "wan"
-        ike_version: "2"
-        peertype: "any"
-        net_device: "disable"
-        proposal: "aes256-sha256"
-        dhgrp: "14"
-        remote_gw: "10.53.{{ num }}.1"
-        psksecret: "{{ psk }}"
-  - name: Configuracion de fase 2 VPN a DC Tigo.
-    fortios_vpn_ipsec_phase2_interface:
-      vdom:  "{{ vdom }}"
-      state: "present"
-      vpn_ipsec_phase2_interface:
-        name: "DC-TIGO_Ufinet"
-        phase1name: "DC-TIGO_Ufinet"
-        proposal: "aes256-sha256"
-        pfs: "disable"
+  #- name: Configuracion de fase 1 VPN a DC Tigo.
+  #  fortios_vpn_ipsec_phase1_interface:
+  #    vdom:  "{{ vdom }}"
+  #    state: "present"
+  #    vpn_ipsec_phase1_interface:
+  #      name: "DC-TIGO_Ufinet"
+  #      interface: "wan"
+  #      ike_version: "2"
+  #      peertype: "any"
+  #      net_device: "disable"
+  #      proposal: "aes256-sha256"
+  #      dhgrp: "14"
+  #      remote_gw: "10.53.{{ num }}.1"
+  #      psksecret: {{ psk }}
+  #- name: Configuracion de fase 2 VPN a DC Tigo.
+  #  fortios_vpn_ipsec_phase2_interface:
+  #    vdom:  "{{ vdom }}"
+  #    state: "present"
+  #    vpn_ipsec_phase2_interface:
+  #      name: "DC-TIGO_Ufinet"
+  #      phase1name: "DC-TIGO_Ufinet"
+  #      proposal: "aes256-sha256"
+  #      pfs: "disable"
 
-  - name: Configuracion de tunel VPN.
-    fortios_system_interface:
-      vdom: "{{ vdom }}"
+  #- name: Configuracion de tunel VPN.
+  #  fortios_system_interface:
+  #    vdom: "{{ vdom }}"
+  #    state: "present"
+  #    system_interface:
+  #      name: "DC-TIGO_Ufinet"
+  #      type: "tunnel"
+  #      vdom: "{{ vdom }}"
+  #      ip: "10.56.{{ num }}.2/32"
+  #      remote_ip: "10.56.{{ num }}.1/32"
+  #      allowaccess: "ping,https,ssh,http"
+  #      interface: "wan"
+
+  - name: Zona INSIDE
+    fortios_system_zone:
+      vdom:  "{{ vdom }}"
       state: "present"
-      system_interface:
-        name: "DC-TIGO_Ufinet"
-        type: "tunnel"
-        vdom: "{{ vdom }}"
-        ip: "10.56.{{ num }}.2/32"
-        remote_ip: "10.56.{{ num }}.1/32"
-        allowaccess: "ping,https,ssh,http"
-        interface: "wan"
+      system_zone:
+        interface:
+          -
+            interface_name: "VLAN 10"
+          -
+            interface_name: "VLAN 11"
+          -
+            interface_name: "VLAN 12"
+          -
+            interface_name: "VLAN 13"
+  - name: Zona DC_TIGO
+    fortios_system_zone:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_zone:
+        interface:
+          -
+            interface_name: "DC-TIGO_Ufinet"
