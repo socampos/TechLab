@@ -416,7 +416,6 @@
   - name: Configuracion de BGP.
     fortios_router_bgp:
       vdom: "{{ vdom }}
-      state: "present"
         router_bgp:
           as: "65627"
           router_id: "10.56.{{ num }}.2"
