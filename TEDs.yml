@@ -358,6 +358,7 @@
       firewall_policy:
         action: "accept"
         name: "TO MATRIZ"
+        policyid: "2"
         srcintf:
           -
             name: "INSIDE"
@@ -380,6 +381,7 @@
       firewall_policy:
         action: "accept"
         name: "FROM MATRIZ"
+        policyid: "3"
         srcintf:
           -
             name: "DC_TIGO"
