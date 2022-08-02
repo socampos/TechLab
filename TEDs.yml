@@ -264,7 +264,13 @@
         name: "LAN_SUCURSAL"
         member:
           -
-            name: "LAN_CAMARA,LAN_TV,LAN_MGMT,LAN_TED"
+            name: "LAN_CAMARA"
+          -
+            name: "LAN_TV"
+          -
+            name: "LAN_MGMT"
+          -
+            name: "LAN_TED"
   - name: Grupo de direcciones matriz
     fortios_firewall_addrgrp:
       vdom:  "{{ vdom }}"
