@@ -417,6 +417,8 @@
     fortios_router_bgp:
       vdom: "{{ vdom }}
         router_bgp:
+          as: "65627"
+          router_id: "10.56.{{ num }}.2"
           #aggregate_address:
           #  -
           #    id: "1"
@@ -441,5 +443,3 @@
           #  -
           #    id: "4"
           #    prefix: "10.50.{{ num }}.48 255.255.255.240"
-          as: "65627"
-          router_id: "10.56.{{ num }}.2"
