@@ -1,1 +1,67 @@
+---
+- name: Configuracion de TED
+  hosts: FG-TED
+  gather_facts: yes
+  collections:
+   - fortinet.fortios
+   
+  connection: httpapi
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: yes
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 20443
+   
+  tasks:
+  - name: VLAN{{ vlan }}.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "Vlan{{ vlan }}"
+        type: "vlan"
+        vdom: "{{ vdom }}"
+        ip: "10.53.{{ num }}.1/30"
+        allowaccess: "ping,https,ssh,http"
+        alias: "{{ desc }}"
+        device_identification: "enable"
+        role: "lan"
+        interface: "TED-SUCURSALES"
+        vlanid: "{{ vlan }}"
+  
+  - name: Configuracion de fase 1 VPN a TED.
+    fortios_vpn_ipsec_phase1_interface:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      vpn_ipsec_phase1_interface:
+        name: "{{ desc }}" #Esto se debe cambiar en lo posible por una convención asdfasdfas adfasd adf as faquero
+        interface: "Vlan{{ vlan }}"
+        ike_version: "2"
+        peertype: "any"
+        net_device: "disable"
+        proposal: "aes256-sha256"
+        dhgrp: "14"
+        remote_gw: "10.53.{{ num }}.2"
+        psksecret: "{{ psk }}"
+  - name: Configuracion de fase 2 VPN a DC Tigo.
+    fortios_vpn_ipsec_phase2_interface:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      vpn_ipsec_phase2_interface:
+        name: "{{ desc }}" #Esto se debe cambiar en lo posible por una convención asdfasdfas adfasd adf as faquero
+        phase1name: "{{ desc }}"
+        proposal: "aes256-sha256"
+        pfs: "disable"
 
+  - name: Configuracion de tunel VPN.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "{{ desc }}" #Esto se debe cambiar en lo posible por una convención asdfasdfas adfasd adf as faquero
+        type: "tunnel"
+        vdom: "{{ vdom }}"
+        ip: "10.56.{{ num }}.1/32"
+        remote_ip: "10.56.{{ num }}.2/30"
+        allowaccess: "ping,https,ssh,http"
+        interface: "Vlan{{ vlan }}"
