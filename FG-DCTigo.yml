@@ -1,7 +1,7 @@
 ---
 - name: Configuracion de TED
-  hosts: FG-TED
-  gather_facts: yes
+  hosts: TED  #FG-TED
+  gather_facts: no
   collections:
    - fortinet.fortios
    
@@ -10,7 +10,7 @@
    vdom: "root"
    ansible_httpapi_use_ssl: yes
    ansible_httpapi_validate_certs: no
-   ansible_httpapi_port: 20443
+   ansible_httpapi_port: 443
    
   tasks:
   - name: VLAN{{ vlan }}.
