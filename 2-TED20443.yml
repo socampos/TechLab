@@ -1,0 +1,21 @@
+---
+- name: Configuracion de TED
+  hosts: TED
+  gather_facts: yes
+  collections:
+   - fortinet.fortios
+   
+  connection: httpapi
+  vars:
+   vdom: "root"
+   snmpmanager: "172.22.22.246"
+   ansible_httpapi_use_ssl: yes
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 443
+   
+  tasks:
+- name: Cambio de puerto web al 20443.
+    fortios_system_global:
+      vdom:  "{{ vdom }}"
+      system_global:
+        admin_sport: "20443"
