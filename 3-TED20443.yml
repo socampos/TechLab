@@ -13,8 +13,8 @@
    ansible_httpapi_port: 443
    
   tasks:
-- name: Cambio de puerto web al 20443.
-  fortios_system_global:
-    vdom:  "{{ vdom }}"
-    system_global:
-      admin_sport: "20443"
+  - name: Cambio de puerto web al 20443.
+    fortios_system_global:
+      vdom:  "{{ vdom }}"
+      system_global:
+        admin_sport: "20443"
