@@ -29,12 +29,12 @@
         interface: "TED-SUCURSALES"
         vlanid: "{{ vlan }}"
   
-  - name: Configuracion de fase 1 VPN a TED.
+  - name: Configuracion de fase 1 VPN Ufinet a TED.
     fortios_vpn_ipsec_phase1_interface:
       vdom:  "{{ vdom }}"
       state: "present"
       vpn_ipsec_phase1_interface:
-        name: "{{ desc }}" #Esto se debe cambiar en lo posible por una convención asdfasdfas adfasd adf as faquero
+        name: "{{ desc }}-PRI
         interface: "Vlan{{ vlan }}"
         ike_version: "2"
         peertype: "any"
@@ -43,25 +43,91 @@
         dhgrp: "14"
         remote_gw: "10.53.{{ num }}.2"
         psksecret: "{{ psk }}"
-  - name: Configuracion de fase 2 VPN a DC Tigo.
+  - name: Configuracion de fase 2 VPN Ufinet a DC Tigo.
     fortios_vpn_ipsec_phase2_interface:
       vdom:  "{{ vdom }}"
       state: "present"
       vpn_ipsec_phase2_interface:
-        name: "{{ desc }}" #Esto se debe cambiar en lo posible por una convención asdfasdfas adfasd adf as faquero
-        phase1name: "{{ desc }}"
+        name: "{{ desc }}-PRI"
+        phase1name: "{{ desc }}-PRI"
         proposal: "aes256-sha256"
         pfs: "disable"
-
-  - name: Configuracion de tunel VPN.
+  - name: Configuracion de tunel VPN Ufinet.
     fortios_system_interface:
       vdom: "{{ vdom }}"
       state: "present"
       system_interface:
-        name: "{{ desc }}" #Esto se debe cambiar en lo posible por una convención asdfasdfas adfasd adf as faquero
+        name: "{{ desc }}-PRI"
         type: "tunnel"
         vdom: "{{ vdom }}"
         ip: "10.56.{{ num }}.1/32"
         remote_ip: "10.56.{{ num }}.2/30"
         allowaccess: "ping,https,ssh,http"
         interface: "Vlan{{ vlan }}"
+        
+  - name: Configuracion de fase 1 VPN Personal a TED.
+    fortios_vpn_ipsec_phase1_interface:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      vpn_ipsec_phase1_interface:
+        name: "{{ desc }}-SEC
+        interface: "Vlan3029"
+        ike_version: "2"
+        peertype: "any"
+        net_device: "disable"
+        proposal: "aes256-sha256"
+        dhgrp: "14"
+        remote_gw: "10.63.{{ num }}.2"
+        psksecret: "{{ psk }}"
+  - name: Configuracion de fase 2 VPN Personal a DC Tigo.
+    fortios_vpn_ipsec_phase2_interface:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      vpn_ipsec_phase2_interface:
+        name: "{{ desc }}-SEC"
+        phase1name: "{{ desc }}-SEC"
+        proposal: "aes256-sha256"
+        pfs: "disable"
+  - name: Configuracion de tunel VPN Personal.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "{{ desc }}-SEC"
+        type: "tunnel"
+        vdom: "{{ vdom }}"
+        ip: "10.66.{{ num }}.1/32"
+        remote_ip: "10.66.{{ num }}.2/30"
+        allowaccess: "ping,https,ssh,http"
+        interface: "Vlan3029"
+        
+  - name: Configuracion de zona.
+    fortios_system_zone:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_zone:
+        name: "TED"
+        interface:
+          -
+            interface_name: "{{ desc }}-PRI"
+          -
+            interface_name: "{{ desc }}-SEC"
+
+  - name: Configuracion de BGP.
+    fortios_router_bgp:
+      vdom: "{{ vdom }}"
+      router_bgp:
+        neighbor:
+          -
+            ip: "10.56.{{ num }}.1"
+            soft_reconfiguration: "enable"
+            description: "{{ ubi }} Ufinet"
+            remote_as: "{{ as }}"
+            weight: "1000"
+            route_map_out: "default"
+          -
+            ip: "10.66.{{ num }}.1"
+            soft_reconfiguration: "enable"
+            description: "{{ ubi }} Personal"
+            remote_as: "{{ as }}"
+            route_map_out: "default"
