@@ -48,7 +48,7 @@
         name: "technoma"
         password: "callTechnoma*911"
         
-  - name: Configuración de troncal.
+  - name: Configuración de troncal wan Ufinet.
     fortios_system_virtual_switch:
       vdom: "{{ vdom }}"
       state: "present"
@@ -59,6 +59,17 @@
         port:
           -
             name: "lan1"
+  - name: Configuración de troncal wan Personal.
+    fortios_system_virtual_switch:
+      vdom: "{{ vdom }}"
+      state: "present"
+      member_path: "port:name"
+      member_state: "absent"
+      system_virtual_switch:
+        name: "lan"
+        port:
+          -
+            name: "lan2"
   - name: WAN.
     fortios_system_interface:
       vdom: "{{ vdom }}"
@@ -131,6 +142,18 @@
         role: "lan"
         interface: "lan1"
         vlanid: "13"
+  - name: Config de lan2 como WAN Personal.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "lan2"
+        mode: "static"
+        ip: "10.63.{{ num }}.2/30"
+        allowaccess: "ping,https,ssh,http"
+        alias: "Personal"
+        lldp_reception: "enable"
+        role: "lan"   
 
   - name: DHCP CAMARAS.
     fortios_system_dhcp_server:
@@ -289,7 +312,7 @@
           -
             name: "LAN_172.25.90.0/24"
 
-  - name: Configuracion de fase 1 VPN a DC Tigo.
+  - name: Configuracion de fase 1 VPN Ufinet a DC Tigo.
     fortios_vpn_ipsec_phase1_interface:
       vdom:  "{{ vdom }}"
       state: "present"
@@ -303,7 +326,7 @@
         dhgrp: "14"
         remote_gw: "10.53.{{ num }}.1"
         psksecret: "{{ psk }}"
-  - name: Configuracion de fase 2 VPN a DC Tigo.
+  - name: Configuracion de fase 2 VPN Ufinet a DC Tigo.
     fortios_vpn_ipsec_phase2_interface:
       vdom:  "{{ vdom }}"
       state: "present"
@@ -312,8 +335,7 @@
         phase1name: "DC-TIGO_Ufinet"
         proposal: "aes256-sha256"
         pfs: "disable"
-
-  - name: Configuracion de tunel VPN.
+  - name: Configuracion de tunel VPN Ufinet.
     fortios_system_interface:
       vdom: "{{ vdom }}"
       state: "present"
@@ -325,6 +347,42 @@
         remote_ip: "10.56.{{ num }}.1/32"
         allowaccess: "ping,https,ssh,http"
         interface: "wan"
+        
+  - name: Configuracion de fase 1 VPN Personal a DC Tigo.
+    fortios_vpn_ipsec_phase1_interface:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      vpn_ipsec_phase1_interface:
+        name: "DC-TIGO_Pers"
+        interface: "lan2"
+        ike_version: "2"
+        peertype: "any"
+        net_device: "disable"
+        proposal: "aes256-sha256"
+        dhgrp: "14"
+        remote_gw: "10.63.{{ num }}.2"
+        psksecret: "{{ psk }}"
+  - name: Configuracion de fase 2 VPN Personal a DC Tigo.
+    fortios_vpn_ipsec_phase2_interface:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      vpn_ipsec_phase2_interface:
+        name: "DC-TIGO_Pers"
+        phase1name: "DC-TIGO_Pers"
+        proposal: "aes256-sha256"
+        pfs: "disable"
+  - name: Configuracion de tunel VPN Personal.
+    fortios_system_interface:
+      vdom: "{{ vdom }}"
+      state: "present"
+      system_interface:
+        name: "DC-TIGO_Pers"
+        type: "tunnel"
+        vdom: "{{ vdom }}"
+        ip: "10.66.{{ num }}.2/32"
+        remote_ip: "10.66.{{ num }}.1/32"
+        allowaccess: "ping,https,ssh,http"
+        interface: "lan2"
 
   - name: Zona INSIDE
     fortios_system_zone:
@@ -350,6 +408,8 @@
         interface:
           -
             interface_name: "DC-TIGO_Ufinet"
+          -
+            interface_name: "DC-TIGO_Pers"
 
   - name: Configuración de permiso 1.
     fortios_firewall_policy:
@@ -404,7 +464,7 @@
           -
             name: "ALL"
 
-  - name: Configuracion de ruta estatica.
+  - name: Configuracion de ruta estatica FortiClient.
     fortios_router_static:
       vdom:  "{{ vdom }}"
       state: "present"
@@ -412,12 +472,20 @@
         dst: "10.212.134.0 255.255.255.0"
         device: "DC-TIGO_Ufinet"
         comment: "FortiClient ITTI"
+  - name: Configuracion de ruta estatica para peers Personal.
+    fortios_router_static:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      router_static:
+        dst: "10.63.0.0 255.255.255.252"
+        device: "lan2"
+        comment: "WAN Matriz Personal"
 
   - name: Configuracion de BGP.
     fortios_router_bgp:
       vdom: "{{ vdom }}"
       router_bgp:
-        as: "65627"
+        as: "{{ as }}"
         router_id: "10.56.{{ num }}.2"
         aggregate_address:
           -
@@ -429,6 +497,12 @@
             ip: "10.56.{{ num }}.1"
             soft_reconfiguration: "enable"
             description: "DC-TIGO-UFINET"
+            remote_as: "65502"
+            weight: "1000"
+          -
+            ip: "10.66.{{ num }}.1"
+            soft_reconfiguration: "enable"
+            description: "DC-TIGO-PERSONAL"
             remote_as: "65502"
         network:
           -
