@@ -27,4 +27,4 @@
  #    dest: './local.backup'
 
   - name: copy file from local to machine2
-    shell: scp ./local.backup technoma@rhsat.technoma.local:/home/technoma
+    shell: scp -o StrictHostKeyChecking=no ./local.backup technoma@rhsat.technoma.local:/home/technoma
