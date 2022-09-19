@@ -13,10 +13,16 @@
    ansible_httpapi_port: 443
    
   tasks:
-  - name: asdad
+  - name: status
+    fortios_monitor:
+     selector: 'system_status'
+     vdom: 'root'
+    register: status
+    
+  - name: print status
     ansible.builtin.debug:
-      var: hostvars[inventory_hostname]
-      
+      var: status
+    
   - name: Backup?
     fortios_monitor:
      selector: 'backup.system.config'
@@ -29,16 +35,6 @@
     copy:
      content: '{{ backupinfo.meta.raw }}'
      dest: './local.backup'
-
-#  - name: Get uptime information
-#    ansible.builtin.shell: scp -o StrictHostKeyChecking=no ./local.backup technoma@rhsat.technoma.local:/home/technoma
-#    expect: "technoma@rhsat.technoma.local's password:"
-#    send: "callTechnoma*911\n"
-
-#  - name: copy file from local to machine2
-#    shell: scp -o StrictHostKeyChecking=no ./local.backup technoma@rhsat.technoma.local:/home/technoma
-#    expect: "technoma@rhsat.technoma.local's password:"
-#    send: "callTechnoma*911\n"
   
   - name: Copy?
     ansible.builtin.expect:
