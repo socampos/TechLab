@@ -13,6 +13,9 @@
    ansible_httpapi_port: 443
    
   tasks:
+  - debug:
+    var: hostvars[inventory_hostname]
+      
   - name: Backup?
     fortios_monitor:
      selector: 'backup.system.config'
