@@ -14,9 +14,6 @@
    
   tasks:
   - name: Backup?
-    fortios_system_config_backup_restore:
-     config: "system config backup"
+    fortios_monitor_fact:
      vdom: "{{ vdom }}"
-     backup: "yes"
-     scope: "global"
-     filename: "/tmp/backup_global"
+     selector: 'system_status'
