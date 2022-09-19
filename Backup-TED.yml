@@ -23,7 +23,7 @@
     
   - name: print status
     ansible.builtin.debug:
-      var: status
+      var: status["meta"]["results"]["hostname"]
     
   - name: Backup?
     fortios_monitor:
