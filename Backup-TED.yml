@@ -13,8 +13,9 @@
    ansible_httpapi_port: 443
    
   tasks:
-  - ansible.builtin.debug:
-    var: hostvars[inventory_hostname]
+  - name: asdad
+    ansible.builtin.debug:
+      var: hostvars[inventory_hostname]
       
   - name: Backup?
     fortios_monitor:
