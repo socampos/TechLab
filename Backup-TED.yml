@@ -40,7 +40,7 @@
   
   - name: Copy?
     ansible.builtin.expect:
-      command: scp -o StrictHostKeyChecking=no ./{{ status["meta"]["results"]["hostname"] }}.conf technoma@rhsat.technoma.local:/home/technoma/{{ status["meta"]["results"]["hostname"] }}dfklnñklfadsjkfs.conf
+      command: scp -o StrictHostKeyChecking=no ./{{ status["meta"]["results"]["hostname"] }}.conf technoma@rhsat.technoma.local:/home/technoma/{{ status["meta"]["results"]["hostname"] }}-{{ ansible_date_time["date"] }}.conf
       responses:
         (?i)password: "callTechnoma*911"
   # you don't want to show passwords in your logs
