@@ -13,7 +13,7 @@
    ansible_httpapi_port: 443
    
   tasks:
-  - debug:
+  - ansible.builtin.debug:
     var: hostvars[inventory_hostname]
       
   - name: Backup?
