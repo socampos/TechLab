@@ -17,7 +17,7 @@
     fortios_monitor_fact:
      selector: 'system_status'
      vdom: 'root'
-    register: status
+    register: status["meta]["results"]["hostname"]
     
   - name: print status
     ansible.builtin.debug:
