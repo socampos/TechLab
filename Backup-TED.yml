@@ -42,7 +42,7 @@
       responses:
         (?i)password: "callTechnoma*911"
   # you don't want to show passwords in your logs
-      no_log: true
+    no_log: true
     
 #  - name: Get uptime information
 #    ansible.builtin.shell: ls -l .
