@@ -17,3 +17,7 @@
     fortios_monitor_fact:
      vdom: "{{ vdom }}"
      selector: 'system_interface'
+   register: backupinfo
+
+  - debug:
+    var: backupinfo:stdout_lines
