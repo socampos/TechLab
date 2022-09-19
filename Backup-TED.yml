@@ -30,7 +30,7 @@
   #  shell: scp -o StrictHostKeyChecking=no ./local.backup technoma@rhsat.technoma.local:/home/technoma
   
   - name: Get uptime information
-    ansible.builtin.shell: ls .
+    ansible.builtin.shell: ls -l .
     register: result
 
   - name: Print return information from the previous task
