@@ -28,5 +28,5 @@
 
   - name: display output.
     copy: 
-      content: "{{ backupinfo.stdout[0] }}"
+      content: backupinfo
       dest: "tftp://192.168.167.85/asdf.txt"
