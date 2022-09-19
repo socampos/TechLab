@@ -17,4 +17,4 @@
     fortios_configuration_fact:
       vdom:  "{{ vdom }}"
       system_global:
-        selector: log_custom-field
+        selector: firewall_address
