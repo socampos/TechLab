@@ -19,5 +19,7 @@
      selector: 'system_interface'
      register: backupinfo
 
-  - debug:
-    var: backupinfo.stdout_lines
+  - name: Print return information from the previous task
+    ansible.builtin.debug:
+      var: backupinfo
+      verbosity: 2
