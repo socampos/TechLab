@@ -14,7 +14,7 @@
    
   tasks:
   - name: status
-    fortios_monitor:
+    fortios_monitor_fact:
      selector: 'system_status'
      vdom: 'root'
     register: status
