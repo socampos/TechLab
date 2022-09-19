@@ -37,9 +37,12 @@
 #    send: "callTechnoma*911\n"
   
   - name: Copy?
-    ansible.builtin.shell: scp -o StrictHostKeyChecking=no ./local.backup technoma@rhsat.technoma.local:/home/technoma
-    expect: "technoma@rhsat.technoma.local's password:"
-    send: "callTechnoma*911\n"
+    ansible.builtin.expect:
+    command: scp -o StrictHostKeyChecking=no ./local.backup technoma@rhsat.technoma.local:/home/technoma
+    responses:
+      (?i)password: "callTechnoma*911"
+  # you don't want to show passwords in your logs
+    no_log: true
     
 #  - name: Get uptime information
 #    ansible.builtin.shell: ls -l .
