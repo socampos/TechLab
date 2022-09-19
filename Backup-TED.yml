@@ -18,7 +18,7 @@
      selector: 'backup.system.config'
      vdom: 'root'
      params:
-         scope: 'global'    -------------> use 'global' if you wanna back up the whole system.
+         scope: 'global'
     register: backupinfo
 
   - name: Save the backup information.
