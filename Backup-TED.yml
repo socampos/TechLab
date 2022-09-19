@@ -21,9 +21,9 @@
      vdom: 'root'
     register: status
     
-  - name: print status
-    ansible.builtin.debug:
-      var: status["meta"]["results"]["hostname"]
+  #- name: print status
+  #  ansible.builtin.debug:
+  #    var: status["meta"]["results"]["hostname"]
     
   - name: Backup?
     fortios_monitor:
@@ -36,11 +36,11 @@
   - name: Save the backup information.
     copy:
      content: '{{ backupinfo.meta.raw }}'
-     dest: './local.backup'
+     dest: './{{ status["meta"]["results"]["hostname"] }}.conf'
   
   - name: Copy?
     ansible.builtin.expect:
-      command: scp -o StrictHostKeyChecking=no ./local.backup technoma@rhsat.technoma.local:/home/technoma
+      command: scp -o StrictHostKeyChecking=no ./{{ status["meta"]["results"]["hostname"] }}.conf technoma@rhsat.technoma.local:/home/technoma
       responses:
         (?i)password: "callTechnoma*911"
   # you don't want to show passwords in your logs
