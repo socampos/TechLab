@@ -14,12 +14,14 @@
    
   tasks:
   - name: Backup?
-    fortios_monitor_fact:
-     vdom: "{{ vdom }}"
-     selector: 'system_interface'
-     register: backupinfo
+    fortios_monitor:
+     selector: 'backup.system.config'
+     vdom: 'root'
+     params:
+         scope: 'global'    -------------> use 'global' if you wanna back up the whole system.
+    register: backupinfo
 
-  - name: Print return information from the previous task
-    ansible.builtin.debug:
-      var: backupinfo
-      verbosity: 2
+  - name: Save the backup information.
+    copy:
+     content: '{{ backupinfo.meta.raw }}'
+     dest: './local.backup'
