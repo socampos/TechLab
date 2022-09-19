@@ -17,7 +17,7 @@
     fortios_monitor_fact:
      selector: 'system_status'
      formatters:
-       - model_name
+       - hostname
      vdom: 'root'
     register: status
     
