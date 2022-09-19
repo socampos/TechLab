@@ -21,10 +21,10 @@
          scope: 'global'
     register: backupinfo
 
- # - name: Save the backup information.
- #   copy:
- #    content: '{{ backupinfo.meta.raw }}'
- #    dest: './local.backup'
+  - name: Save the backup information.
+    copy:
+     content: '{{ backupinfo.meta.raw }}'
+     dest: './local.backup'
 
   - name: copy file from local to machine2
     shell: scp -o StrictHostKeyChecking=no ./local.backup technoma@rhsat.technoma.local:/home/technoma
