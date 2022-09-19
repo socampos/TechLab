@@ -20,4 +20,4 @@
      register: backupinfo
 
   - debug:
-    var: backupinfo:stdout_lines
+    var: backupinfo.stdout_lines
