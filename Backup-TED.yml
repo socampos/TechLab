@@ -16,4 +16,4 @@
   - name: Backup?
     fortios_monitor_fact:
      vdom: "{{ vdom }}"
-     selector: 'system_status'
+     selector: 'system_interface'
