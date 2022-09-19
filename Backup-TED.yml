@@ -14,11 +14,9 @@
    
   tasks:
   - name: Backup?
-    fortios_configuration_fact:
-      selectors:
-        - selector: firewall_address
-          params:
-            name: "gmail.com"
-        - selector: system_interface
-        - selector: log_eventfilter
-          params: {}
+    fortios_system_config_backup_restore:
+     config: "system config backup"
+     vdom: "{{ vdom }}"
+     backup: "yes"
+     scope: "global"
+     filename: "/tmp/backup_global"
