@@ -21,7 +21,12 @@
          scope: 'global'
     register: backupinfo
 
-  - name: Save the backup information.
-    copy:
-     content: '{{ backupinfo.meta.raw }}'
-     dest: './local.backup'
+ # - name: Save the backup information.
+ #   copy:
+ #    content: '{{ backupinfo.meta.raw }}'
+ #    dest: './local.backup'
+
+  - name: display output.
+    ansible.builtin.debug:
+      var: result
+      verbosity: 2
