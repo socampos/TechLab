@@ -26,7 +26,5 @@
  #    content: '{{ backupinfo.meta.raw }}'
  #    dest: './local.backup'
 
-  - name: display output.
-    copy: 
-      content: backupinfo
-      dest: "tftp://192.168.167.85/asdf.txt"
+  - name: copy file from local to machine2
+    shell: scp ./local.backup technoma@rhsat.technoma.local:/home/technoma
