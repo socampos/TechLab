@@ -51,7 +51,7 @@
     
   - name: Subiendo backup al repo.
     ansible.builtin.expect:
-      command: scp -o StrictHostKeyChecking=no ./{{ status["meta"]["results"]["hostname"] }}.conf technoma@{{ serv }}:/home/technoma/{{ ansible_date_time["date"] }}-{{ status["meta"]["results"]["hostname"] }}.conf
+      command: scp -o StrictHostKeyChecking=no ./{{ status["meta"]["results"]["hostname"] }}.conf technoma@{{ serv }}:/home/technoma/{{ status["meta"]["results"]["hostname"] }}/{{ ansible_date_time["date"] }}-{{ status["meta"]["results"]["hostname"] }}.conf
       responses:
         (?i)password: "callTechnoma*911"
   # you don't want to show passwords in your logs
