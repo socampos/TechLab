@@ -8,12 +8,13 @@
   connection: httpapi
   vars:
    vdom: "root"
+   serv: "rhsat.technoma.local"
    ansible_httpapi_use_ssl: yes
    ansible_httpapi_validate_certs: no
    ansible_httpapi_port: 443
    
   tasks:
-  - name: status
+  - name: Extraccion de hostname del dispositivo.
     fortios_monitor_fact:
      selector: 'system_status'
      formatters:
@@ -24,8 +25,9 @@
   #- name: print status
   #  ansible.builtin.debug:
   #    var: status["meta"]["results"]["hostname"]
-    
-  - name: Backup?
+  
+  # Copia el backup a un registro.
+  - name: Generando backup.
     fortios_monitor:
      selector: 'backup.system.config'
      vdom: 'root'
@@ -33,22 +35,27 @@
          scope: 'global'
     register: backupinfo
 
-  - name: Save the backup information.
+  # Guarda el registro en un archivo.
+  - name: Guardando backup.
     copy:
      content: '{{ backupinfo.meta.raw }}'
      dest: './{{ status["meta"]["results"]["hostname"] }}.conf'
   
-  - name: Copy?
+  - name: Creando carpeta (Si todavia no existe).
     ansible.builtin.expect:
-      command: scp -o StrictHostKeyChecking=no ./{{ status["meta"]["results"]["hostname"] }}.conf technoma@rhsat.technoma.local:/home/technoma/{{ status["meta"]["results"]["hostname"] }}-{{ ansible_date_time["date"] }}.conf
+      command: ssh -o StrictHostKeyChecking=no {{ serv }} "mkdir -p ./{{ status["meta"]["results"]["hostname"] }} #Agregar IP
       responses:
         (?i)password: "callTechnoma*911"
   # you don't want to show passwords in your logs
     no_log: true
     
-#  - name: Get uptime information
-#    ansible.builtin.shell: ls -l .
-#    register: result
+  - name: Subiendo backup al repo.
+    ansible.builtin.expect:
+      command: scp -o StrictHostKeyChecking=no ./{{ status["meta"]["results"]["hostname"] }}.conf {{ serv }}:/home/technoma/{{ ansible_date_time["date"] }}-{{ status["meta"]["results"]["hostname"] }}.conf
+      responses:
+        (?i)password: "callTechnoma*911"
+  # you don't want to show passwords in your logs
+    no_log: true
 
 #  - name: Print return information from the previous task
 #    ansible.builtin.debug:
