@@ -1,6 +1,6 @@
 ---
 - name: Backup TEDs
-  hosts: TED
+  hosts: TEDs
   gather_facts: yes
   collections:
    - fortinet.fortios
@@ -11,7 +11,7 @@
    serv: "rhsat.technoma.local"
    ansible_httpapi_use_ssl: yes
    ansible_httpapi_validate_certs: no
-   ansible_httpapi_port: 443
+   ansible_httpapi_port: 20443
    
   tasks:
   - name: Extraccion de hostname del dispositivo.
