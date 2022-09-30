@@ -1,0 +1,30 @@
+---
+- name: Playbook to handle users
+  hosts: Lab
+  become: true
+  collections:
+    - freeipa.ansible_freeipa
+  tasks:
+  - name: Modificar usuario.
+    ipauser:
+      ipaadmin_password: techadmin1234
+      name: "{{ username }}"
+      first: "{{ nombre }}"
+      last: "{{ apellido }}"
+      password: "{{ pass }}"
+      update_password: on_create
+  
+  tasks:
+  - name: Es admin
+    ipasudorule:
+      ipaadmin_password: techadmin1234
+      name: test 
+      user: "{{ username }}"
+    when: "{{ admin }}" == "SI"
+  tasks:
+  - name: No es admin 
+    ipasudorule:
+      ipaadmin_password: techadmin1234
+      name: test
+      user: ""
+  when: "{{ admin }}" == "NO"
