@@ -4,9 +4,6 @@
   become: true
   collections:
     - freeipa.ansible_freeipa
-    
-  var:
-    dsfa
 
   tasks:
   # Ensure user pinky is present
