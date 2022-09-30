@@ -25,7 +25,7 @@
       user: "{{ username }}"
     assert: 
       that:
-      - "{{ admin }}" == si
+      - admin == si
 
 #   - name: No es admin 
 #     ipasudorule:
