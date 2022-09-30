@@ -23,7 +23,7 @@
       ipaadmin_password: techadmin1234
       name: test 
       user: "{{ username }}"
-    when: "{{ admin }} == "{{ si }}""
+    when: "{{ admin }} == SI"
 
 #   - name: No es admin 
 #     ipasudorule:
