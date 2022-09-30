@@ -23,9 +23,7 @@
       ipaadmin_password: techadmin1234
       name: test 
       user: "{{ username }}"
-    assert: 
-      that:
-      - admin == si
+    when: {{ admin }} == "{{ si }}"
 
 #   - name: No es admin 
 #     ipasudorule:
