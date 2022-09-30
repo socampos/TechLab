@@ -11,8 +11,8 @@
     ipauser:
       ipaadmin_password: techadmin1234
       name: "{{ username }}"
-      first: "{{ nombre }}"
-      last: "{{ apellido }}"
+#       first: "{{ nombre }}"
+#       last: "{{ apellido }}"
       #uid: 10001
       #gid: 1890400000
       phone: "+555123457"
