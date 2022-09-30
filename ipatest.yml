@@ -7,7 +7,8 @@
 
   tasks:
   # Ensure user pinky is present
-  - ipauser:
+  - name: Crear usuario.
+    ipauser:
       ipaadmin_password: techadmin1234
       name: pinky
       first: pinky
@@ -19,3 +20,9 @@
       passwordexpiration: "2023-01-19 23:59:59"
       password: "no-brain"
       update_password: on_create
+
+  - name: Convertir pinky en admin.
+    ipasudorule:
+      ipaadmin_password: techadmin1234
+      name: test
+      user: pinky
