@@ -4,15 +4,18 @@
   become: true
   collections:
     - freeipa.ansible_freeipa
+    
+  var:
+    dsfa
 
   tasks:
   # Ensure user pinky is present
   - name: Crear usuario.
     ipauser:
       ipaadmin_password: techadmin1234
-      name: pinky
-      first: pinky
-      last: Acme
+      name: {{ username }}
+      first: {{ nombre }}
+      last: {{ apellido }}
       #uid: 10001
       gid: 1890400000
       phone: "+555123457"
