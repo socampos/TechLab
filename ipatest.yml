@@ -19,7 +19,7 @@
       email: pinky@acme.com
       passwordexpiration: "2023-01-19 23:59:59"
       password: "no-brain"
-    update_password: on_create
+      update_password: on_create
 
   - name: Convertir pinky en admin.
     ipasudorule:
