@@ -4,6 +4,10 @@
   become: true
   collections:
     - freeipa.ansible_freeipa
+    
+  vars:
+    si: "SI"
+    
   tasks:
   - name: Modificar usuario.
     ipauser:
@@ -19,11 +23,11 @@
       ipaadmin_password: techadmin1234
       name: test 
       user: "{{ username }}"
-    when: "{{ admin }} == SI"
+    when: "{{ admin }} == si"
 
-  - name: No es admin 
-    ipasudorule:
-      ipaadmin_password: techadmin1234
-      name: test
-      user: ""
-    when: "{{ admin }} == NO"
+#   - name: No es admin 
+#     ipasudorule:
+#       ipaadmin_password: techadmin1234
+#       name: test
+#       user: ""
+#     when: "{{ admin }} == NO"
