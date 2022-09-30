@@ -15,11 +15,11 @@
 #       last: "{{ apellido }}"
       #uid: 10001
       #gid: 1890400000
-      phone: "+555123457"
-      state: absent
-      passwordexpiration: "2023-01-19 23:59:59"
-      password: "no-brain"
-      update_password: on_create
+#       phone: "+555123457"
+       state: absent
+#       passwordexpiration: "2023-01-19 23:59:59"
+#       password: "no-brain"
+#       update_password: on_create
 
 #   - name: Convertir pinky en admin.
 #     ipasudorule:
