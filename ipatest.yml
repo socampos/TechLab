@@ -2,6 +2,8 @@
 - name: Playbook to handle users
   hosts: Lab
   become: true
+  collections:
+    - freeipa.ansible_freeipa
 
   tasks:
   # Ensure user pinky is present
