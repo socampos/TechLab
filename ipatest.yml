@@ -22,7 +22,7 @@
     update_password: on_create
 
   - name: Convertir pinky en admin.
-   ipasudorule:
-     ipaadmin_password: techadmin1234
-     name: test
-     user: "{{ username }}"
+    ipasudorule:
+      ipaadmin_password: techadmin1234
+      name: test
+      user: "{{ username }}"
