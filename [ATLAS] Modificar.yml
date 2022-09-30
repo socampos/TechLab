@@ -20,11 +20,11 @@
       ipaadmin_password: techadmin1234
       name: test 
       user: "{{ username }}"
-    when: "{{ admin }}" == "SI"
+    when: {{ admin }} == "SI"
   tasks:
   - name: No es admin 
     ipasudorule:
       ipaadmin_password: techadmin1234
       name: test
       user: ""
-  when: "{{ admin }}" == "NO"
+  when: {{ admin }} == "NO"
