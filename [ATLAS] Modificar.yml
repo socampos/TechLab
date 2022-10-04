@@ -9,14 +9,29 @@
     si: "SI"
     
   tasks:
-  - name: Modificar usuario.
+  - name: Modificar Nombre.
     ipauser:
       ipaadmin_password: techadmin1234
       name: "{{ username }}"
       first: "{{ nombre }}"
+      update_password: on_create
+    when: nombre.stderr | length > 0
+      
+  - name: Modificar apellido.
+    ipauser:
+      ipaadmin_password: techadmin1234
+      name: "{{ username }}"
       last: "{{ apellido }}"
+      update_password: on_create
+    when: apellido.stderr | length > 0
+  
+  - name: Modificar pass.
+    ipauser:
+      ipaadmin_password: techadmin1234
+      name: "{{ username }}"
       password: "{{ pass }}"
       update_password: on_create
+    when: pass.stderr | length > 0
 
   - name: Es admin
     ipasudorule:
