@@ -18,7 +18,7 @@
   - name: Definición de privilegios de administrador.
     ipagroup:
       ipaadmin_password: techadmin1234
-      name: Full-Admin
+      name: admins
       action: member
       user:
       - "{{ username }}"
