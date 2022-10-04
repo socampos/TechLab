@@ -46,9 +46,10 @@
     ipagroup:
       ipaadmin_password: techadmin1234
       name: admins
-      action: group
+      action: member
       user:
       - "{{ username }}"
+      state: absent 
     when: admin|string == "NO"
 
 # VOY A AGREGARLE EL REBUILD AL FINAL.
