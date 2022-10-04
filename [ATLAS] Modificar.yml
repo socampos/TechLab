@@ -32,9 +32,7 @@
     ipauser:
       ipaadmin_password: techadmin1234
       name: "{{ username }}"
-      userauthtype: otp
       passwordexpiration: 2010-01-01
-      update_password: on_create
     when:  chpass|string == "SI"
 
   - name: Es admin
