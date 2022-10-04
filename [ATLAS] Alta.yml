@@ -21,7 +21,7 @@
       name: Full-Admin
       action: member
       user:
-      - {{ username }}
+      - "{{ username }}"
     when: admin|string == "SI"
 
 #   - name: Definición de privilegios de administrador.
