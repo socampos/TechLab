@@ -12,7 +12,7 @@
       name: "{{ username }}"
       first: "{{ nombre }}"
       last: "{{ apellido }}"
-      password: "{{ pass }}"
+#      password: "{{ pass }}"
 #      update_password: on_create
       
   - name: Definición de privilegios de administrador.
