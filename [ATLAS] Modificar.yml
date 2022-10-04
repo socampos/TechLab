@@ -31,7 +31,7 @@
       name: "{{ username }}"
       userauthtype: password
       password: "{{ pass }}"
-      update_password: on_create
+      update_password: always
     when:  pass|string | length > 0
 
   - name: Es admin
