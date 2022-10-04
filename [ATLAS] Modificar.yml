@@ -4,10 +4,6 @@
   become: true
   collections:
     - freeipa.ansible_freeipa
-    
-  vars:
-    si: "SI"
-    
   tasks:
   - name: Modificar Nombre.
     ipauser:
