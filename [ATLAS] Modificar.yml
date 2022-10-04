@@ -54,9 +54,9 @@
     
   - name: rebuild user
     ipaautomember:
-    ipaadmin_password: techadmin1234
+      ipaadmin_password: techadmin1234
       users:
-        - "{{ username }}"
+      - "{{ username }}"
       state: rebuilt
 
 # VOY A AGREGARLE EL REBUILD AL FINAL.
