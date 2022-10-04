@@ -15,7 +15,7 @@
       name: "{{ username }}"
       first: "{{ nombre }}"
       update_password: on_create
-    when: nombre.stderr | length > 0
+    when:  nombre|string | length > 0
       
   - name: Modificar apellido.
     ipauser:
@@ -23,7 +23,7 @@
       name: "{{ username }}"
       last: "{{ apellido }}"
       update_password: on_create
-    when: apellido.stderr | length > 0
+    when:  apellido|string | length > 0
   
   - name: Modificar pass.
     ipauser:
@@ -31,7 +31,7 @@
       name: "{{ username }}"
       password: "{{ pass }}"
       update_password: on_create
-    when: pass.stderr | length > 0
+    when:  pass|string | length > 0
 
   - name: Es admin
     ipasudorule:
