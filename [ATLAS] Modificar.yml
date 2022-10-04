@@ -34,17 +34,21 @@
     when:  pass|string | length > 0
 
   - name: Es admin
-    ipasudorule:
-      ipaadmin_password: techadmin1234
-      name: test 
-      user: "{{ username }}"
+    ipagroup:
+      ipaadmin_password: SomeADMINpassword
+      name: sysops
+      action: member
+      user:
+      - "{{ username }}"
     when: admin|string == "SI"
 
   - name: No es admin 
-    ipasudorule:
-      ipaadmin_password: techadmin1234
-      name: test
-      user: 
+    ipagroup:
+      ipaadmin_password: SomeADMINpassword
+      name: sysops
+      action: group
+      user:
+      - "{{ username }}"
     when: admin|string == "NO"
 
 # VOY A AGREGARLE EL REBUILD AL FINAL.
