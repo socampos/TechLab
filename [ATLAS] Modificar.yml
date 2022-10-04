@@ -31,8 +31,8 @@
       name: "{{ username }}"
       userauthtype: password
       password: "{{ pass }}"
+      passwordexpiration: 2010-01-01
       update_password: always
-      passwordexpiration: 2000-01-01
     when:  chpass|string == "SI"
 
   - name: Es admin
