@@ -51,5 +51,12 @@
       - "{{ username }}"
       state: absent 
     when: admin|string == "NO"
+    
+  - name: rebuild user
+    ipaautomember:
+    ipaadmin_password: techadmin1234
+      users:
+        - "{{ username }}"
+      state: rebuilt
 
 # VOY A AGREGARLE EL REBUILD AL FINAL.
