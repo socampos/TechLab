@@ -14,7 +14,6 @@
       ipaadmin_password: techadmin1234
       name: "{{ username }}"
       first: "{{ nombre }}"
-      update_password: on_create
     when:  nombre|string | length > 0
       
   - name: Modificar apellido.
@@ -22,14 +21,13 @@
       ipaadmin_password: techadmin1234
       name: "{{ username }}"
       last: "{{ apellido }}"
-      update_password: on_create
     when:  apellido|string | length > 0
   
   - name: Modificar pass.
     ipauser:
       ipaadmin_password: techadmin1234
       name: "{{ username }}"
-      userauthtype: password
+      userauthtype: otp
       password: "{{ pass }}"
       passwordexpiration: 2010-01-01
 #       update_password: on_create
