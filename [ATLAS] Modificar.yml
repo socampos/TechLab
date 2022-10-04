@@ -29,6 +29,7 @@
     ipauser:
       ipaadmin_password: techadmin1234
       name: "{{ username }}"
+      userauthtype: password
       password: "{{ pass }}"
       update_password: on_create
     when:  pass|string | length > 0
