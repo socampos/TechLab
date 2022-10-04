@@ -14,7 +14,7 @@
       last: "{{ apellido }}"
       password: "{{ pass }}"
       passwordexpiration: 2000-01-01
-#      update_password: on_create
+      update_password: on_create
 
   - ipauser:
       ipaadmin_password: techadmin1234
