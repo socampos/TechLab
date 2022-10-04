@@ -14,10 +14,19 @@
       last: "{{ apellido }}"
       password: "{{ pass }}"
       update_password: on_create
-
+      
   - name: Definición de privilegios de administrador.
-    ipasudorule:
+    ipagroup:
       ipaadmin_password: techadmin1234
-      name: test 
-      user: "{{ username }}"
+      name: Full-Admin
+      action: member
+      user:
+      - {{ username }}
     when: admin|string == "SI"
+
+#   - name: Definición de privilegios de administrador.
+#     ipasudorule:
+#       ipaadmin_password: techadmin1234
+#       name: test 
+#       user: "{{ username }}"
+#     when: admin|string == "SI"
