@@ -35,8 +35,8 @@
 
   - name: Es admin
     ipagroup:
-      ipaadmin_password: SomeADMINpassword
-      name: sysops
+      ipaadmin_password: techadmin1234
+      name: admins
       action: member
       user:
       - "{{ username }}"
@@ -44,8 +44,8 @@
 
   - name: No es admin 
     ipagroup:
-      ipaadmin_password: SomeADMINpassword
-      name: sysops
+      ipaadmin_password: techadmin1234
+      name: admins
       action: group
       user:
       - "{{ username }}"
