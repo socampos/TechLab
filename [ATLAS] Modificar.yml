@@ -23,7 +23,7 @@
     ipauser:
       ipaadmin_password: techadmin1234
       name: "{{ username }}"
-      userauthtype: otp
+      userauthtype: password
       password: "{{ pass }}"
       update_password: always
     when:  chpass|string == "SI"
