@@ -26,7 +26,7 @@
       userauthtype: otp
       password: "{{ pass }}"
       passwordexpiration: 2010-01-01
-#       update_password: on_create
+      update_password: on_create
     when:  chpass|string == "SI"
 
   - name: Es admin
