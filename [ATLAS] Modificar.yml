@@ -32,7 +32,7 @@
       userauthtype: password
       password: "{{ pass }}"
       update_password: always
-    when:  pass|string | length > 0
+    when:  chpass|string == "SI"
 
   - name: Es admin
     ipagroup:
