@@ -6,7 +6,7 @@
     - freeipa.ansible_freeipa
     
   tasks:
-  - name: Definición de nombre de usuario.
+  - name: Creación de usuario.
     ipauser:
       ipaadmin_password: techadmin1234
       name: "{{ username }}"
@@ -15,6 +15,11 @@
       password: "{{ pass }}"
       passwordexpiration: 2000-01-01
 #      update_password: on_create
+
+  - ipauser:
+      ipaadmin_password: techadmin1234
+      passwordexpiration: 2000-01-01
+    when: passchg|string == "SI"
       
   - name: Definición de privilegios de administrador.
     ipagroup:
