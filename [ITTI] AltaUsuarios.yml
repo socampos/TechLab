@@ -1,0 +1,23 @@
+---
+- name: Agregación de usuario
+  hosts: TED
+  gather_facts: no
+  collections:
+   - fortinet.fortios
+   
+  connection: httpapi
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: yes
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 20443
+   
+  tasks:
+  - name: Alta de usuario nlopez.
+    fortios_system_admin:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      system_admin:
+        accprofile: "super_admin_readonly"
+        name: "nlopez"
+        password: "S3G-iTTi_2023*"
