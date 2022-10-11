@@ -13,11 +13,11 @@
    ansible_httpapi_port: 20443
    
   tasks:
-  - name: Alta de usuario nlopez.
+  - name: Alta de usuario.
     fortios_system_admin:
       vdom:  "{{ vdom }}"
       state: "present"
       system_admin:
-        accprofile: "super_admin_readonly"
-        name: "nlopez"
-        password: "S3G-iTTi_2023*"
+        accprofile: "{{ priv }}"
+        name: "{{ username }}"
+        password: "{{ pass }}"
